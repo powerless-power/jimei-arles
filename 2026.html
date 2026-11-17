@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="light">
+	<title>2026 集美·阿尔勒导览 · 在厦门看见世界</title>
+	<style>
+		:root {
+			--ink: #1c1c1e;
+			--muted: #6e6e73;
+			--line: #e5e5ea;
+			--bg: #f5f5f7;
+			--card: #fff;
+			--accent: #b54a3a;
+			--accent-soft: #f7ebe8;
+			--radius: 18px;
+			--shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(0, 0, 0, .05);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box
+		}
+
+		html {
+			scroll-behavior: smooth
+		}
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+				"Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+			background: var(--bg);
+			color: var(--ink);
+			line-height: 1.75;
+			-webkit-font-smoothing: antialiased
+		}
+
+		a {
+			color: var(--accent);
+			text-decoration: underline;
+			text-underline-offset: 2px
+		}
+
+		a:hover {
+			text-decoration-thickness: 2px
+		}
+
+		.hero {
+			background: var(--ink);
+			color: #fff;
+			padding: 64px 24px 56px;
+			text-align: center;
+			position: relative;
+			overflow: hidden
+		}
+
+		.hero:after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background:
+				radial-gradient(circle at 20% 15%, rgba(181, 74, 58, .35), transparent 55%),
+				radial-gradient(circle at 85% 80%, rgba(181, 74, 58, .18), transparent 50%);
+			pointer-events: none
+		}
+
+		.hero>* {
+			position: relative;
+			z-index: 1
+		}
+
+		.hero .eyebrow {
+			font-size: 12px;
+			letter-spacing: .25em;
+			opacity: .6;
+			margin-bottom: 16px
+		}
+
+		.hero h1 {
+			font-size: 34px;
+			line-height: 1.25;
+			margin-bottom: 12px
+		}
+
+		.hero h1 span {
+			color: #e88d7f
+		}
+
+		.hero .sub {
+			font-size: 15px;
+			opacity: .72;
+			max-width: 600px;
+			margin: 0 auto 28px
+		}
+
+		.meta-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px 18px;
+			justify-content: center;
+			font-size: 13px;
+			opacity: .7
+		}
+
+		.tab-bar-wrap {
+			position: sticky;
+			top: 0;
+			z-index: 60;
+			background: #f5f5f7;
+			border-bottom: 1px solid var(--line)
+		}
+
+		.tab-bar {
+			max-width: 1080px;
+			margin: auto;
+			display: flex;
+			padding: 0 16px
+		}
+
+		.tab-btn {
+			flex: 1;
+			max-width: 220px;
+			background: none;
+			border: 0;
+			font: inherit;
+			font-size: 14px;
+			font-weight: 600;
+			color: var(--muted);
+			padding: 14px 8px 12px;
+			cursor: pointer;
+			border-bottom: 2px solid transparent
+		}
+
+		.tab-btn.active {
+			color: var(--ink);
+			border-bottom-color: var(--accent)
+		}
+
+		.venue-tab-wrap {
+			max-width: 1080px;
+			margin: auto;
+			padding: 22px 20px 0
+		}
+
+		.venue-tab-bar {
+			display: flex;
+			gap: 5px;
+			background: #eaeaef;
+			padding: 5px;
+			border-radius: 999px;
+			max-width: 620px;
+			overflow-x: auto
+		}
+
+		.venue-btn {
+			flex: 1 0 auto;
+			border: 0;
+			background: none;
+			font: inherit;
+			font-size: 13.5px;
+			font-weight: 600;
+			color: var(--muted);
+			padding: 9px 12px;
+			border-radius: 999px;
+			cursor: pointer;
+			white-space: nowrap
+		}
+
+		.venue-btn.active {
+			background: #fff;
+			color: var(--ink);
+			box-shadow: 0 1px 3px #0002
+		}
+
+		.floor-nav-wrap {
+			position: sticky;
+			top: 49px;
+			z-index: 55;
+			background: #f5f5f7ed;
+			backdrop-filter: blur(12px);
+			border-bottom: 1px solid var(--line);
+			margin-top: 18px
+		}
+
+		.floor-nav {
+			max-width: 1080px;
+			margin: auto;
+			display: flex;
+			gap: 4px;
+			overflow-x: auto;
+			padding: 8px 16px
+		}
+
+		.floor-nav a {
+			flex: 0 0 auto;
+			font-size: 12.5px;
+			color: var(--muted);
+			text-decoration: none;
+			padding: 6px 12px;
+			border-radius: 999px;
+			white-space: nowrap
+		}
+
+		.floor-nav a:hover {
+			color: var(--ink);
+			background: #eaeaef
+		}
+
+		.tab-panel,
+		.venue-panel {
+			display: none
+		}
+
+		.tab-panel.active,
+		.venue-panel.active {
+			display: block
+		}
+
+		.container {
+			max-width: 1080px;
+			margin: auto;
+			padding: 28px 20px 80px
+		}
+
+		.venue-head {
+			margin: 8px 0
+		}
+
+		.venue-label,
+		.kicker {
+			font-size: 11px;
+			letter-spacing: .18em;
+			color: var(--accent);
+			font-weight: 700;
+			margin-bottom: 4px
+		}
+
+		.venue-head h2,
+		.talk-intro h2 {
+			font-size: 22px;
+			line-height: 1.4
+		}
+
+		.venue-note {
+			font-size: 13.5px;
+			color: var(--muted);
+			margin-top: 6px;
+			max-width: 720px
+		}
+
+		.floor-group {
+			margin: 30px 0 8px;
+			scroll-margin-top: 110px
+		}
+
+		.floor-label {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			margin-bottom: 14px;
+			flex-wrap: wrap
+		}
+
+		.floor-label .badge {
+			font-size: 12px;
+			font-weight: 700;
+			background: var(--ink);
+			color: #fff;
+			padding: 3px 10px;
+			border-radius: 6px
+		}
+
+		.floor-label .desc {
+			font-size: 13.5px;
+			color: var(--muted)
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 20px
+		}
+
+		@media(min-width:760px) {
+			.grid {
+				grid-template-columns: 1fr 1fr
+			}
+		}
+
+		.ex-card {
+			background: var(--card);
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			padding: 26px 24px 24px;
+			display: flex;
+			flex-direction: column;
+			border: 1px solid #00000008;
+			transition: transform .25s, box-shadow .25s
+		}
+
+		.ex-card:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 16px 40px #00000014
+		}
+
+		.ex-card.full {
+			grid-column: 1/-1
+		}
+
+		.ex-tag {
+			display: inline-block;
+			align-self: flex-start;
+			font-size: 11px;
+			font-weight: 600;
+			color: var(--accent);
+			background: var(--accent-soft);
+			padding: 4px 10px;
+			border-radius: 999px;
+			margin-bottom: 12px
+		}
+
+		.ex-card h3 {
+			font-size: 18.5px;
+			line-height: 1.4;
+			margin-bottom: 5px
+		}
+
+		.byline {
+			font-size: 13px;
+			color: var(--muted);
+			margin-bottom: 14px;
+			line-height: 1.7
+		}
+
+		.ex-body {
+			font-size: 14.5px;
+			color: #3a3a3c;
+			line-height: 1.8
+		}
+
+		.ex-body p {
+			margin-bottom: 10px
+		}
+
+		.ex-body p:last-child {
+			margin-bottom: 0
+		}
+
+		.source-note {
+			margin-top: 12px;
+			font-size: 11.5px;
+			color: #a1a1a6;
+			line-height: 1.7
+		}
+
+		.source-note a {
+			color: #8e8e93
+		}
+
+		.fact-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px 8px;
+			margin: 2px 0 12px
+		}
+
+		.fact {
+			font-size: 12px;
+			color: var(--muted);
+			background: #f0f0f2;
+			padding: 3px 9px;
+			border-radius: 6px
+		}
+
+		.talk-intro {
+			margin-bottom: 8px
+		}
+
+		.talk-intro p {
+			font-size: 14.5px;
+			color: var(--muted);
+			max-width: 760px;
+			margin-top: 8px
+		}
+
+		.subnav-wrap {
+			position: sticky;
+			top: 49px;
+			z-index: 55;
+			background: #f5f5f7ed;
+			backdrop-filter: blur(12px);
+			border-bottom: 1px solid var(--line);
+			margin: 18px 0 4px
+		}
+
+		.subnav {
+			max-width: 1080px;
+			margin: auto;
+			display: flex;
+			gap: 4px;
+			overflow-x: auto;
+			padding: 8px 16px
+		}
+
+		.subnav a {
+			flex: 0 0 auto;
+			font-size: 12.5px;
+			color: var(--muted);
+			text-decoration: none;
+			padding: 6px 12px;
+			border-radius: 999px;
+			white-space: nowrap
+		}
+
+		.subnav a:hover {
+			color: var(--ink);
+			background: #eaeaef
+		}
+
+		.day-block {
+			margin-bottom: 36px;
+			scroll-margin-top: 110px
+		}
+
+		.day-head {
+			display: flex;
+			align-items: baseline;
+			gap: 12px;
+			margin-bottom: 16px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid var(--line);
+			flex-wrap: wrap
+		}
+
+		.day-head .day {
+			font-size: 18px;
+			font-weight: 700
+		}
+
+		.day-head .date {
+			font-size: 13px;
+			color: var(--muted)
+		}
+
+		.talk-list {
+			display: flex;
+			flex-direction: column;
+			gap: 14px
+		}
+
+		.talk-item {
+			background: #fff;
+			border-radius: 14px;
+			box-shadow: var(--shadow);
+			padding: 20px 22px;
+			display: grid;
+			grid-template-columns: 92px 1fr;
+			gap: 16px
+		}
+
+		.talk-time {
+			font-size: 13px;
+			font-weight: 700;
+			color: var(--accent);
+			white-space: nowrap
+		}
+
+		.talk-time small {
+			display: block;
+			font-weight: 500;
+			color: #a1a1a6;
+			font-size: 11px;
+			margin-top: 2px
+		}
+
+		.talk-content h4 {
+			font-size: 16.5px;
+			line-height: 1.4;
+			margin-bottom: 6px
+		}
+
+		.talk-meta {
+			font-size: 13px;
+			color: var(--muted);
+			line-height: 1.7;
+			margin-bottom: 8px
+		}
+
+		.talk-desc {
+			font-size: 13.5px;
+			color: #3a3a3c;
+			line-height: 1.75
+		}
+
+		.tag {
+			display: inline-block;
+			font-size: 11px;
+			font-weight: 600;
+			padding: 2px 8px;
+			border-radius: 6px;
+			margin-left: 6px;
+			vertical-align: 1px
+		}
+
+		.tag.ok {
+			background: #e8f2e9;
+			color: #3a6b45
+		}
+
+		.tag.tbd {
+			background: #fdf3e3;
+			color: #8a6d3b
+		}
+
+		.talk-note {
+			display: inline-block;
+			margin-top: 10px;
+			font-size: 12px;
+			color: var(--muted);
+			background: #f0f0f2;
+			padding: 3px 9px;
+			border-radius: 6px
+		}
+
+		.info-block {
+			margin-top: 40px;
+			background: #fff;
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			padding: 30px 26px
+		}
+
+		.info-block h2 {
+			font-size: 19px;
+			margin-bottom: 18px
+		}
+
+		.info-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 16px 28px
+		}
+
+		@media(min-width:680px) {
+			.info-grid {
+				grid-template-columns: 1fr 1fr
+			}
+		}
+
+		.info-item .label {
+			font-size: 11px;
+			letter-spacing: .1em;
+			color: var(--accent);
+			font-weight: 600;
+			margin-bottom: 3px
+		}
+
+		.info-item .value {
+			font-size: 14px;
+			line-height: 1.7
+		}
+
+		.acknowledge {
+			margin-top: 40px;
+			background: var(--ink);
+			color: #fff;
+			border-radius: var(--radius);
+			padding: 36px 30px
+		}
+
+		.acknowledge h2 {
+			font-size: 20px;
+			margin-bottom: 12px
+		}
+
+		.acknowledge p {
+			font-size: 14.5px;
+			line-height: 1.85;
+			opacity: .82;
+			max-width: 720px
+		}
+
+		.acknowledge a {
+			color: #e88d7f
+		}
+
+		.revision {
+			margin-top: 22px;
+			background: #fff;
+			border: 1px dashed var(--line);
+			border-radius: 14px;
+			padding: 20px 22px;
+			font-size: 13px;
+			color: var(--muted)
+		}
+
+		.revision b {
+			color: var(--ink)
+		}
+
+		.revision ul {
+			margin: 8px 0 0 18px
+		}
+
+		.revision li {
+			margin-bottom: 4px
+		}
+
+		footer {
+			text-align: center;
+			padding: 36px 20px 50px;
+			font-size: 12px;
+			color: #a1a1a6;
+			line-height: 1.8
+		}
+
+		@media(max-width:520px) {
+			.hero {
+				padding: 48px 20px 42px
+			}
+
+			.hero h1 {
+				font-size: 26px
+			}
+
+			.ex-card {
+				padding: 20px 18px
+			}
+
+			.talk-item {
+				grid-template-columns: 1fr;
+				gap: 6px;
+				padding: 16px 18px
+			}
+
+			.acknowledge {
+				padding: 28px 22px
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<header class="hero">
+		<div class="eyebrow">Jimei × Arles 2026</div>
+		<p class="sub">
+			第十二届集美·阿尔勒，超过 40 场展览、近 2000 件作品。
+			按场馆和楼层浏览，或直接跳到开幕周的日程。
+		</p>
+		<div class="meta-row">
+			<span>📅 2026.11.20 — 2027.01.03</span>
+			<span>🎬 开幕周 11.20 — 11.22</span>
+			<span>📍 集美艺术中心 / 三影堂厦门</span>
+		</div>
+	</header>
+
+	<div class="tab-bar-wrap">
+		<div class="tab-bar">
+			<button class="tab-btn active" data-tab="guide" type="button">导览</button>
+			<button class="tab-btn" data-tab="talks" type="button">开幕周</button>
+		</div>
+	</div>
+
+	<div id="tab-guide" class="tab-panel active">
+		<div class="venue-tab-wrap">
+			<div class="venue-tab-bar">
+				<button class="venue-btn active" data-venue="jimei" type="button">集美艺术中心</button>
+				<button class="venue-btn" data-venue="threeshadows" type="button">三影堂厦门</button>
+				<button class="venue-btn" data-venue="archipelago" type="button">群岛计划</button>
+			</div>
+		</div>
+
+		<!-- 场馆 A：集美艺术中心 -->
+		<div id="venue-jimei" class="venue-panel active">
+			<div class="floor-nav-wrap">
+				<nav class="floor-nav">
+					<a href="#jimei-f1">F1 特展 / 市集 / 聚光</a>
+					<a href="#jimei-f2">F2 年度阿尔勒 / 幻灯</a>
+					<a href="#jimei-f3">F3 发现奖 / 无界</a>
+					<a href="#jimei-f4">F4 中国律动</a>
+				</nav>
+			</div>
+
+			<main class="container">
+				<div class="venue-head">
+					<div class="venue-label">主场馆 A</div>
+					<h2>集美艺术中心</h2>
+					<div class="venue-note">
+						厦门市集美区杏林湾商务营运中心 12 号楼。
+						F1 特展、艺术市集与“聚光”单元；F2 年度阿尔勒与“幻灯”；
+						F3 发现奖、策展创作与无界影像；F4“中国律动”与“聚光”的两个个展。
+					</div>
+				</div>
+
+				<!-- F1 -->
+				<div class="floor-group" id="jimei-f1">
+					<div class="floor-label"><span class="badge">F1</span><span class="desc">特展 / 北欧专列 / 群展 / 艺术市集 / 聚光</span>
+					</div>
+					<div class="grid">
+
+						<article class="ex-card">
+							<span class="ex-tag">F1 · 特展</span>
+							<h3>理光 GR《年中无休》</h3>
+							<div class="byline">理光 GR 三十周年特展 · 特约影像伙伴</div>
+							<div class="ex-body">
+								<p>1996 年 GR1 问世，GR 系列到 2026 年满三十周年。《年中无休》把目光从相机本身移开，投向那些用 GR 持续拍摄的人。</p>
+								<p>展览汇集 GR WALKer 平台联动征集的作品，以及官方认证 GRist 安菲菲、周梦莹在 2026 年法国阿尔勒摄影节及其行程期间拍摄的新作。</p>
+							</div>
+							<div class="source-note">
+								资料：<a
+									href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/ricoh-gr-year-round-special-exhibition/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F1 · 北欧专列</span>
+							<h3>深流：从深空到深海的挪威叙事</h3>
+							<div class="byline">北欧专列单元首展 · 中挪艺术家共创</div>
+							<div class="ex-body">
+								<p>以“流（Currents）”为核心概念，从太空俯瞰地球开始，逐步进入极地冰川、生命迁徙与深海世界，探索塑造挪威自然、生态与文明的可见与不可见之力。</p>
+								<p>摄影、声音与跨学科实践并置。展览与 11 月 21 日下午的艺术家论坛《深流：追寻那些看不见的连接》互为上下文。</p>
+							</div>
+							<div class="source-note">
+								资料：<a
+									href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/deep-currents-norwegian-narratives-from-deep-space-to-the-deep-ocean/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a> ·
+								<a href="https://mp.weixin.qq.com/s?__biz=MzA4MzQzODYwOQ==&amp;mid=2652639783&amp;idx=1&amp;sn=8e0a470ed19027b432deeb301082322c"
+									target="_blank" rel="noopener">三影堂公众号展讯</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F1 · 中国律动 · 群展</span>
+							<h3>表面之下，表面之上：图像、痕迹与不可见之物</h3>
+							<div class="byline">
+								联合策展：
+								<a href="https://weibo.com/2/detail/5361966636076054" target="_blank" rel="noopener">刘昊晖、夏天</a>
+								· 伦敦艺术大学伦敦传媒学院（UAL LCC）11 位师生
+							</div>
+							<div class="ex-body">
+								<p>参展艺术家：张若萱、徐中仁、徐玉来、施展艺、李凌朔、江龙、汪啸、白磊、陈冀扬、陈雨星。</p>
+								<p>从家庭关系、地方记忆、身份认知、信仰经验、文化表述、数字媒介与日常时间出发，讨论图像如何形成，又如何介入我们理解现实的方式。</p>
+							</div>
+							<div class="source-note">
+								资料：<a
+									href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/beneath-the-surface-upon-the-surface-images-traces-and-the-unseen-/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F1 · 艺术市集</span>
+							<h3>集美·阿尔勒艺术市集</h3>
+							<div class="byline">本届全新板块 · 展期内持续</div>
+							<div class="ex-body">
+								<p>2026 年新增板块，在影像艺术季期间集中呈现入选视觉艺术作品，为创作者、机构与品牌提供展示、交流与销售的平台。</p>
+								<p>摄影收藏不一定从拍卖开始，也可以从一张打动你的照片开始。</p>
+							</div>
+							<div class="source-note">
+								资料：<a
+									href="https://mp.weixin.qq.com/s?__biz=MzA4MzQzODYwOQ==&amp;mid=2652634524&amp;idx=1&amp;sn=67af53cad09a7775820ca964527b0eb8"
+									target="_blank" rel="noopener">三影堂公众号 · 艺术市集征集</a>
+							</div>
+						</article>
+
+						<article class="ex-card full">
+							<span class="ex-tag">F1 · 聚光 · 四个单元</span>
+							<h3>长江剧场 / 未稳沉 / 观·物众 / 现实的转译</h3>
+							<div class="byline">“聚光”单元聚焦尚未被广泛关注的创作者</div>
+							<div class="ex-body">
+								<p><strong>《长江剧场》</strong> 艺术家钟麒，策展人李子健。以 18 张作品沿长江展开叙事。</p>
+								<p><strong>《未稳沉》</strong> 艺术家杨智凯，策展人潘超群。关注济宁采煤地区的地景变迁。</p>
+								<p><strong>《观·物众》</strong> 艺术家一天，策展机构艺天影像，策展人罗明、姚高才，学术支持乔聆桓。</p>
+								<p><strong>《现实的转译》</strong> 艺术家胡涂、耿玛丽、张弛、赵永正、张良，策展人胡涂。</p>
+							</div>
+							<div class="source-note">
+								资料：<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/" target="_blank"
+									rel="noopener">三影堂 · 2026 展览总页</a> ·
+								<a href="https://mp.weixin.qq.com/s/8if0mf5cm5ANipU1CQdK-A" target="_blank" rel="noopener">公众号 ·
+									观·物众</a> ·
+								<a href="https://weibo.com/2/detail/5365539918056484" target="_blank" rel="noopener">微博 · 长江剧场</a>
+							</div>
+						</article>
+					</div>
+				</div>
+
+				<!-- F2 -->
+				<div class="floor-group" id="jimei-f2">
+					<div class="floor-label"><span class="badge">F2</span><span class="desc">年度阿尔勒 / 图书奖 / 幻灯</span></div>
+					<div class="grid">
+
+						<article class="ex-card">
+							<span class="ex-tag">F2 · 年度阿尔勒</span>
+							<h3>我们并不孤单——外星人影像</h3>
+							<div class="byline">
+								策展人：
+								<a href="https://weibo.com/2/detail/5355007748606827" target="_blank" rel="noopener">菲利普·博杜安（Philippe
+									Baudouin）</a>
+							</div>
+							<div class="ex-body">
+								<p>从 UFO 摄影出发，但不打算证明外星人是否存在。它好奇的是：当人类面对无法解释的东西时，会生产出什么样的图像，又如何用这些图像安放想象与相信。</p>
+								<p>参展艺术家：比利·迈尔、埃里克·布洛、迈克尔·霍恩、塞巴斯蒂安·迪金丹、卡琳·博勒姆、道格拉斯·柯兰、伊夫·博松、萨沙·戈德伯格、吉·克里斯特、塞拉斯·巴尔。</p>
+							</div>
+							<div class="source-note">
+								资料：<a
+									href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/we-are-not-alone-alien-images/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F2 · 年度阿尔勒</span>
+							<h3>女性继承者的宇宙观</h3>
+							<div class="byline">
+								<a href="https://lowemallory.com/about" target="_blank" rel="noopener">马洛里·洛·姆波卡（Mallory Lowe Mpoka）</a>
+								· 策展人：
+								<a href="https://www.thepaper.cn/newsDetail_forward_34267545" target="_blank"
+									rel="noopener">娜丁·翁克帕坦（Nadine Hounkpatin）</a>
+								· 加拿大蒙特利尔 Occurrence 呈现
+							</div>
+							<div class="ex-body">
+								<p>法国阿尔勒摄影节“发现奖”单元展览。姆波卡把摄影、提花编织、玻璃珠与家族档案放在同一张桌上，让“继承”的承接与断裂同时在场。</p>
+								<p>作品在女性身份、家族记忆与殖民历史之间来回移动。</p>
+							</div>
+							<div class="source-note">
+								艺术家：<a href="https://lowemallory.com/about" target="_blank" rel="noopener">Mallory Lowe Mpoka ·
+									About</a>；
+								展览：<a
+									href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/cosmologies-of-the-heiresses-in-the-weft-of-memory-procession-i-and-procession-ii-she-who-summons/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F2 · 年度阿尔勒</span>
+							<h3>再·现（Re/cover）</h3>
+							<div class="byline">
+								<a href="https://weibo.com/2/detail/5355053042632398" target="_blank" rel="noopener">潘光（Phan Quang）</a>
+								· 呈现：
+								<a href="https://www.galeriebao.com/" target="_blank" rel="noopener">Bao Gallery（巴黎）</a>
+							</div>
+							<div class="ex-body">
+								<p>潘光把婚纱与面纱用作隐喻，通过置景摄影重新搭建“真实”。显露与遮蔽之间被轻轻盖住的故事，在画面里获得一个可以被看见的位置。</p>
+							</div>
+							<div class="source-note">
+								画廊：<a href="https://www.galeriebao.com/" target="_blank" rel="noopener">Galerie Bao</a>；
+								展览：<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/recover/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F2 · 年度阿尔勒</span>
+							<h3>多情的大地（指粘在靴子上的泥土）</h3>
+							<div class="byline">
+								<a href="https://rebekkadeubner.com/projets" target="_blank" rel="noopener">丽贝卡·多伊布纳（Rebekka
+									Deubner）</a>
+							</div>
+							<div class="ex-body">
+								<p>多伊布纳以长期的田野实践关注土地、水资源与日常劳作，在持续的观看与共同经验中重新思考人与土地的关系。</p>
+							</div>
+							<div class="source-note">
+								艺术家项目：<a href="https://rebekkadeubner.com/projets" target="_blank" rel="noopener">Rebekka Deubner ·
+									Projets</a>；
+								展览：<a
+									href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/la-terre-amoureuse-said-of-soil-that-sticks-to-the-boots/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F2 · 图书角</span>
+							<h3>法国阿尔勒摄影节 2026 图书奖</h3>
+							<div class="byline">
+								入围与获奖书目展示 ·
+								<a href="https://weibo.com/2/detail/5355000978735132" target="_blank" rel="noopener">Les Rencontres
+									d'Arles</a>
+							</div>
+							<div class="ex-body">
+								<p>摄影书是另一种展览空间。这里陈列 2026 年法国阿尔勒摄影节图书奖的获奖与入围出版物，适合在密集的墙面之间坐下来翻一翻。</p>
+							</div>
+							<div class="source-note">资料：<a href="https://weibo.com/2/detail/5355000978735132" target="_blank"
+									rel="noopener">三影堂官方微博 · 图书奖</a></div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F2 · 幻灯 · 动态影像</span>
+							<h3>果核不在水果里面</h3>
+							<div class="byline">
+								策展人：
+								<a href="https://www.thepaper.cn/newsDetail_forward_34401232" target="_blank" rel="noopener">齐燕、周一辰</a>
+								· 十组艺术家 · 斯莫格动态影像创作奖
+							</div>
+							<div class="ex-body">
+								<p>参展艺术家：安李、安溯、白清文&amp;周奕辰、北屿、蔡宝丰、姜吉儿&amp;胡兆玮、沈靖皓、王沫文、徐正月、钟莹。</p>
+								<p>当即时连接压缩距离，“等待、跋涉、身体在空间中的移动”是否正在退出感知？实验短片、单频道与多频道影像、影像装置与混合媒介创作，从各自视角回应这个问题。</p>
+								<p>“幻灯”单元同时设立 SmallRig 斯莫格“动态影像创作奖”（New Motion Award），得主获 3 万元人民币（税前）创作支持。</p>
+							</div>
+							<div class="source-note">
+								展览专文：<a
+									href="https://mp.weixin.qq.com/s?__biz=MzA4MzQzODYwOQ==&amp;mid=2652639683&amp;idx=1&amp;sn=7d9af90e3e973322902190c2269f95c5"
+									target="_blank" rel="noopener">三影堂公众号 · 果核不在水果里面</a> ·
+								<a href="https://www.thepaper.cn/newsDetail_forward_34401232" target="_blank" rel="noopener">澎湃新闻</a>
+							</div>
+						</article>
+					</div>
+				</div>
+
+				<!-- F3 -->
+				<div class="floor-group" id="jimei-f3">
+					<div class="floor-label"><span class="badge">F3</span><span class="desc">发现奖 8 个个展 / 策展创作 / 无界影像</span></div>
+					<div class="grid">
+
+						<article class="ex-card full">
+							<span class="ex-tag">F3 · 发现奖 · 8 位入围</span>
+							<h3>集美·阿尔勒发现奖</h3>
+							<div class="byline">5 家画廊提名 8 位艺术家 · 首席发现官：汉印</div>
+							<div class="ex-body">
+								<p>大奖将于开幕周期间评选并公布，得主获 10 万元人民币（税前）奖金，并于次年赴法国阿尔勒摄影节举办个展。</p>
+							</div>
+							<div class="source-note">
+								资料：<a href="https://www.threeshadows.cn/cn/jimei-arles/discovery-award/" target="_blank"
+									rel="noopener">三影堂 · 发现奖</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">发现奖 · 哈特画廊</span>
+							<h3>走地仙（Easy Wandering）</h3>
+							<div class="byline">
+								<a href="https://weibo.com/2/detail/5355672121120886" target="_blank" rel="noopener">蔡山海</a>
+								· 策展人：刘轶恒
+							</div>
+							<div class="ex-body">
+								<p>蔡山海长期走访中国的县城与乡村，记录那些不在中心叙事里、却自有完整逻辑的生存状态。镜头不猎奇，也不代言。</p>
+							</div>
+							<div class="source-note">
+								资料：<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/easy-wandering/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">发现奖 · 哈特画廊</span>
+							<h3>聚沙成塔（A Pagoda That Moments Built）</h3>
+							<div class="byline">
+								<a href="https://mp.weixin.qq.com/s/1qGt07pnzqeVtoz-oyG9HQ" target="_blank" rel="noopener">陈见非</a>
+								· 策展人：刘轶恒
+							</div>
+							<div class="ex-body">
+								<p>摄影、水墨、篆刻、拓片在陈见非手上彼此叠印，以杭州的古塔为线索。塔的精神性不在尖顶，在垒砌它的每一粒沙。</p>
+							</div>
+							<div class="source-note">
+								展讯：<a href="https://mp.weixin.qq.com/s/1qGt07pnzqeVtoz-oyG9HQ" target="_blank" rel="noopener">三影堂公众号 ·
+									聚沙成塔</a> ·
+								<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/a-pagoda-that-moments-built/"
+									target="_blank" rel="noopener">展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">发现奖 · 全摄影&amp;一个艺术</span>
+							<h3>社交媒体乐园（The Garden of Social Media Delights）</h3>
+							<div class="byline">
+								<a href="https://weibo.com/2/detail/5356526500839968" target="_blank" rel="noopener">刘昊晖</a>
+							</div>
+							<div class="ex-body">
+								<p>把社交平台上的日常照片重新拼合为经典绘画的图景，探讨数字生活中的消费、身份与隐私边界。</p>
+								<p>项目收集互联网中的公开图像、文字与数据，通过程序、拼贴与机器学习重新组织信息流中的数字痕迹。</p>
+							</div>
+							<div class="source-note">
+								资料：<a
+									href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/the-garden-of-social-media-delights/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">发现奖 · 全摄影&amp;一个艺术</span>
+							<h3>既在既逝（Here and Gone）</h3>
+							<div class="byline">
+								<a href="https://mp.weixin.qq.com/s/ol9cTj4hHjZHBuZh3VBCRg" target="_blank" rel="noopener">钱儒雅</a>
+							</div>
+							<div class="ex-body">
+								<p>以多重曝光自拍与镜面装置为方法，在“在场”与“消逝”之间反复定位自己的形象。</p>
+							</div>
+							<div class="source-note">
+								展讯：<a href="https://mp.weixin.qq.com/s/ol9cTj4hHjZHBuZh3VBCRg" target="_blank" rel="noopener">三影堂公众号 ·
+									既在既逝</a> ·
+								<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/here-and-gone/"
+									target="_blank" rel="noopener">展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">发现奖 · 伯年艺术空间</span>
+							<h3>21 世纪巴别塔</h3>
+							<div class="byline">
+								<a href="https://mp.weixin.qq.com/s/gt7LX2MQQQ_i425zF9lGVQ" target="_blank" rel="noopener">王婧岚</a>
+								· 策展人：杨迪
+							</div>
+							<div class="ex-body">
+								<p>以“巴别塔”为线索，逆向追溯人类的迁徙与语言的分隔；现场经验来自埃塞俄比亚盐原等地。</p>
+							</div>
+							<div class="source-note">
+								展讯：<a href="https://mp.weixin.qq.com/s/gt7LX2MQQQ_i425zF9lGVQ" target="_blank" rel="noopener">三影堂公众号 ·
+									21 世纪巴别塔</a> ·
+								<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/the-tower-of-babel-in-the-21st-century/"
+									target="_blank" rel="noopener">展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">发现奖 · 五月公园画廊</span>
+							<h3>抚顺现场</h3>
+							<div class="byline">
+								<a href="https://weibo.com/2/detail/5357542974690645" target="_blank" rel="noopener">李勇</a>
+								· 策展人：董冰峰
+							</div>
+							<div class="ex-body">
+								<p>天府影像艺术中心·五月公园画廊提名。李勇把镜头对准抚顺这座城市仍在运转与已经停摆的现实现场。</p>
+							</div>
+							<div class="source-note">
+								资料：<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/fushun-case/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">发现奖 · 谢画廊</span>
+							<h3>山皿图（Vessels of Hill）</h3>
+							<div class="byline">
+								<a href="https://mp.weixin.qq.com/s/JLxoHfdFjhRp3JZOt1g4_w" target="_blank" rel="noopener">陈厚霖（鹽）</a>
+								· 策展人：王溪
+							</div>
+							<div class="ex-body">
+								<p>鹽把感光乳剂手刷在玻璃上，让条痕与气泡成为图像的一部分，在影像的肌理与虚实之间追溯东方古典山水的精神意境。</p>
+							</div>
+							<div class="source-note">
+								展讯：<a href="https://mp.weixin.qq.com/s/JLxoHfdFjhRp3JZOt1g4_w" target="_blank" rel="noopener">三影堂公众号 ·
+									山皿图</a> ·
+								<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/vessels-of-hill/"
+									target="_blank" rel="noopener">展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">发现奖 · 谢画廊</span>
+							<h3>显影绘（Developer Paintings）</h3>
+							<div class="byline">
+								<a href="https://weibo.com/2/detail/5357967244526662" target="_blank" rel="noopener">孙彦初</a>
+								· 策展人：王溪
+							</div>
+							<div class="ex-body">
+								<p>十余年暗房实践，孙彦初不再用镜头复刻现实，而以显影液、定影液与相纸为核心媒介，让记忆、想象与精神山水在相纸上自然显形。</p>
+							</div>
+							<div class="source-note">
+								资料：<a
+									href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/developer-paintings/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F3 · 影像策展创作计划</span>
+							<h3>余火（AfterGlow）</h3>
+							<div class="byline">
+								策展人：
+								<a href="https://mp.weixin.qq.com/s?__biz=MzA4MzQzODYwOQ==&amp;mid=2652632367&amp;idx=4&amp;sn=be487df6d5d3c74e18ebf3c13b5ae65b"
+									target="_blank" rel="noopener">王立秋</a>
+								· 2025/26 年度成果展 · 三影堂 × 香奈儿
+							</div>
+							<div class="ex-body">
+								<p>汇集顾桃、胡为一、李勇、刘雨佳、佟玉田、依长洪六位艺术家的作品，试图打破“宏大叙事”与“下岗衰落”对东北的刻板定型，聚焦百年工业消解后这片土地上依然闪烁的个体生命力。</p>
+							</div>
+							<div class="source-note">
+								资料：<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/afterglow/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a> ·
+								<a href="https://mp.weixin.qq.com/s?__biz=MzA4MzQzODYwOQ==&amp;mid=2652632367&amp;idx=4&amp;sn=be487df6d5d3c74e18ebf3c13b5ae65b"
+									target="_blank" rel="noopener">公众号 · 王立秋《余火》</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F3 · 无界影像</span>
+							<h3>上海女儿</h3>
+							<div class="byline">
+								<a href="https://weibo.com/2/detail/5361205093078047" target="_blank" rel="noopener">Ag（沈仲旻）</a>
+								· 策划：李振华
+							</div>
+							<div class="ex-body">
+								<p>“无界影像”单元的两组展览之一，以影像为主要形式，游走于纪实与实验之间，叩问记忆、故土与时代遗产。</p>
+							</div>
+							<div class="source-note">
+								资料：<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/shanghai-daughter-/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F3 · 无界影像</span>
+							<h3>中国建筑遗产三部曲：《楼》《厂》《乡》</h3>
+							<div class="byline">
+								<a href="https://www.thepaper.cn/newsDetail_forward_34441327" target="_blank" rel="noopener">雎安奇</a>
+								· 策划：
+								<a href="https://www.lizhenhua.work/" target="_blank" rel="noopener">李振华</a>
+							</div>
+							<div class="ex-body">
+								<p>历时七年，跨越 30 余省份，走访 130 多处建筑遗产。城市、工业与乡村的建筑地貌被视作时代记忆的载体——正在消逝的空间，以及仍然住在其中或已经离开的人。</p>
+							</div>
+							<div class="source-note">
+								策展人：<a href="https://www.lizhenhua.work/" target="_blank" rel="noopener">李振华个人网站</a>；
+								展览：<a
+									href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/china-s-architectural-heritage-trilogy-building-factory-and-village/"
+									target="_blank" rel="noopener">三影堂 · 展览专页</a>
+							</div>
+						</article>
+					</div>
+				</div>
+
+				<!-- F4 -->
+				<div class="floor-group" id="jimei-f4">
+					<div class="floor-label"><span class="badge">F4</span><span class="desc">中国律动 · 青年艺术家陪跑计划 / 聚光两个个展</span>
+					</div>
+					<div class="grid">
+
+						<article class="ex-card full">
+							<span class="ex-tag">F4 · 中国律动</span>
+							<h3>2024 三影堂青年艺术家陪跑计划成果展</h3>
+							<div class="byline">
+								总策划：
+								<a href="https://mp.weixin.qq.com/s/-efRlPzc4XCK5xp8q1rJOA" target="_blank" rel="noopener">胡嘉雯</a>
+								· 11 个相对独立的个展单元
+							</div>
+							<div class="ex-body">
+								<p>陪跑计划的意义在于让创作获得一段被支持、被讨论、被允许试错的时间。十一个单元覆盖摄影、影像与综合媒介。</p>
+								<p>Xin Jin《微妙关系》、卜天《我们都是 NPC》、崔誉舰《金州十八景》、李昕瑜《人离之后》、AC
+									陈冠宏《間》、鲁阿策《死灵情结》、张嘉雯《美丽异木棉》、张汶羚《鲸须律令》、仇海如《正午将至，正午将逝》、郭图图《无回声邮局》、高滢滢《玻璃山》。</p>
+								<p>陪跑导师：李佳、沈宸、何伊宁、朱炯、郑梓煜、邢丹文、姚璐、刘鼎、卢迎华、施瀚涛、高波。合作策展人：Nikita Yu、宁佳、陈国森、张芳、张雪萌、Eleni Mouzakiti、贾经纶、罗雅馨。</p>
+							</div>
+							<div class="source-note">
+								资料：<a href="https://mp.weixin.qq.com/s/-efRlPzc4XCK5xp8q1rJOA" target="_blank" rel="noopener">三影堂公众号 ·
+									中国律动展讯（含 11 个单元名单）</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F4 · 聚光 · 个展</span>
+							<h3>在一句话里</h3>
+							<div class="byline">
+								<a href="https://weibo.com/2/detail/5365547723922359" target="_blank" rel="noopener">赵震</a>
+								· 策展人：孙润翔 · 合作机构：大震艺术工作室、BTTB 工作室
+							</div>
+							<div class="ex-body">
+								<p>从亲密关系中的日常交流出发，以摄影保存发声时身体运动的痕迹。展览以《嘴唇》为中心，把《所在街区的寄所中》的行走与《在床的肚脐里》的栖居并置。</p>
+							</div>
+							<div class="source-note">
+								展览介绍：<a href="https://weibo.com/2/detail/5365547723922359" target="_blank" rel="noopener">三影堂官方微博 ·
+									在一句话里</a>
+							</div>
+						</article>
+
+						<article class="ex-card">
+							<span class="ex-tag">F4 · 聚光 · 个展</span>
+							<h3>风景借居</h3>
+							<div class="byline">
+								<a href="https://weibo.com/2/detail/5365546942988491" target="_blank" rel="noopener">孙乙</a>
+								· 策展人：孙润翔 · 合作机构：大震艺术工作室、BTTB 工作室
+							</div>
+							<div class="ex-body">
+								<p>以《重叠世界》与《洞天福地》为线索，孙乙通过投影与再次摄影，把拍摄所得的风景置入日常居所。墙体、家具与物件介入画面，记录与建构在同一次拍摄中发生。</p>
+							</div>
+							<div class="source-note">
+								展览介绍：<a href="https://weibo.com/2/detail/5365546942988491" target="_blank" rel="noopener">三影堂官方微博 ·
+									风景借居</a>
+							</div>
+						</article>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<!-- 场馆 B：三影堂厦门 -->
+		<div id="venue-threeshadows" class="venue-panel">
+			<main class="container">
+				<div class="venue-head">
+					<div class="venue-label">主场馆 B</div>
+					<h2>三影堂厦门摄影艺术中心</h2>
+					<div class="venue-note">
+						厦门市集美区杏林湾商务营运中心 2 号楼裙楼三层。
+						亚洲影汇与“上城士”特展所在，开幕周的多场对谈、工作坊与专家见面会也发生在这里。
+					</div>
+				</div>
+
+				<div class="grid" style="margin-top:24px">
+					<article class="ex-card">
+						<span class="ex-tag">L3 · 亚洲影汇</span>
+						<h3>振荡中的物件</h3>
+						<div class="byline">
+							策展人：
+							<a href="https://weibo.com/2/detail/5358555743128757" target="_blank" rel="noopener">具本昌（Koo
+								Bohnchang）</a>
+							· 八位韩国摄影师 · 首站首尔 Kukje Gallery
+						</div>
+						<div class="ex-body">
+							<p>艺术家：郑喜丞、赵晟娟、郑正垀、金庚泰、具本昌、具成娟、朴赞祐、赵善姬。</p>
+							<p>从人工智能时代关于图像真实性的讨论出发，重新审视摄影与现实物质世界的关系。参展者从微小收藏、极度微距、糖艺装饰、文学文本到废弃碎片与衰亡物质，在不同路径上凝视日常物件。</p>
+						</div>
+						<div class="source-note">
+							展览：<a
+								href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/objects-in-oscillation/"
+								target="_blank" rel="noopener">三影堂 · 展览专页</a> ·
+							<a href="https://weibo.com/2/detail/5358555743128757" target="_blank" rel="noopener">官方微博</a>
+						</div>
+					</article>
+
+					<article class="ex-card">
+						<span class="ex-tag">L3 · 特别展览</span>
+						<h3>上城士：一切从东始</h3>
+						<div class="byline">
+							<a href="https://weibo.com/2/detail/5363382765225914" target="_blank" rel="noopener">《上城士》特别呈现</a>
+						</div>
+						<div class="ex-body">
+							<p>“一切从东始”——把视线从既定的中心移开，重新确认东方作为出发点与观看位置的可能性。以摄影为基本媒介，探访全国上百座城市与地区，记录数百位非遗传承人的技艺与精神。</p>
+						</div>
+						<div class="source-note">
+							资料：<a
+								href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/shangchengshi-rooted-in-the-east/"
+								target="_blank" rel="noopener">三影堂 · 展览专页</a>
+						</div>
+					</article>
+				</div>
+			</main>
+		</div>
+
+		<!-- 场馆 C：群岛计划 -->
+		<div id="venue-archipelago" class="venue-panel">
+			<main class="container">
+				<div class="venue-head">
+					<div class="venue-label">卫星展区</div>
+					<h2>群岛计划</h2>
+					<div class="venue-note">
+						第四届群岛计划，总策划刘梦婷。把展览散落到主展厅之外的街巷与城乡肌理中，
+						本届含“在地文化探索”“可持续议题”与全新的“群岛创作营”。
+					</div>
+				</div>
+
+				<div class="grid" style="margin-top:24px">
+					<article class="ex-card full">
+						<span class="ex-tag">群岛计划 · 可持续议题</span>
+						<h3>在高温处看见</h3>
+						<div class="byline">
+							气候行动伙伴：绿色和平 · 策展人：
+							<a href="https://weibo.com/2/detail/5364376979899393" target="_blank" rel="noopener">孙润翔</a>
+						</div>
+						<div class="ex-body">
+							<p>人文纪实与热成像并置，让“气候变化”还原为身体能够感知的温度。委任艺术家：李思程、宋泽毅、赵玉顺、邹璧宇；另汇集“热浪”主题征集作品。</p>
+							<p>镜头关注横店群演、暑假受高温影响的儿童与青少年、田间劳作者，以及空调庇护之外的人。</p>
+						</div>
+						<div class="source-note">
+							展览专文：<a
+								href="https://mp.weixin.qq.com/s?__biz=MzA4MzQzODYwOQ==&amp;mid=2652641063&amp;idx=1&amp;sn=c1dc7fa3b23b2931a5607567403f75ed"
+								target="_blank" rel="noopener">三影堂公众号 · 在高温处看见</a> ·
+							<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/seeing-in-the-heat/"
+								target="_blank" rel="noopener">展览专页</a>
+						</div>
+					</article>
+
+					<article class="ex-card">
+						<span class="ex-tag">泉州 · 卫星展 ①</span>
+						<h3>第五届梧林艺术季「迁徙与回归」</h3>
+						<div class="byline">
+							泉州 · 梧林传统村落 · 策展人：
+							<a href="https://weibo.com/2/detail/5361206904753258" target="_blank" rel="noopener">陈冠宏</a>
+						</div>
+						<div class="fact-row">
+							<span class="fact">📅 9.30 – 12.31</span>
+							<span class="fact">📍 晋江梧林传统村落</span>
+						</div>
+						<div class="ex-body">
+							<p>群岛计划携手梧林传统村落，以艺术家驻地形式回应这座闽南侨乡的离别与归来。十位驻地创作者用绘画、摄影、手作与装置，让作品与墙体、树影、居民日常彼此依存共生。</p>
+						</div>
+						<div class="source-note">
+							展览与艺术家名单：<a href="https://weibo.com/2/detail/5361206904753258" target="_blank" rel="noopener">三影堂官方微博 ·
+								第五届梧林艺术季</a>
+						</div>
+					</article>
+
+					<article class="ex-card">
+						<span class="ex-tag">泉州 · 卫星展 ②</span>
+						<h3>群岛漫游展「我看见海风穿过石缝」</h3>
+						<div class="byline">
+							泉州 · 崇武古城 · 群岛创作营成果展 · 导师：
+							<a href="https://weibo.com/2/detail/5364384534631366" target="_blank" rel="noopener">杜扬</a>
+							· 策划人：刘梦婷 · 执行策展人：郑达真
+						</div>
+						<div class="fact-row">
+							<span class="fact">📅 11.20 – 2027.01.03</span>
+							<span class="fact">📍 惠安崇武古城潮乐村水关巷 4 号 · 番时留咖啡</span>
+						</div>
+						<div class="ex-body">
+							<p>群岛创作营的阶段性成果展示，发生在崇武古城的一座咖啡空间里。营队成员刘晓璇、姚海芸、张露婷在导师杜扬的带领下完成驻地创作，古城的石头墙、海风与巷子与影像并置，展览与地点的边界被有意放软。</p>
+						</div>
+						<div class="source-note">
+							展览信息：<a href="https://weibo.com/2/detail/5364384534631366" target="_blank" rel="noopener">三影堂官方微博 ·
+								崇武群岛漫游展</a>
+						</div>
+					</article>
+				</div>
+			</main>
+		</div>
+
+		<!-- 参观信息 -->
+		<div class="container" style="padding-top:0">
+			<section class="info-block" id="info">
+				<h2>参观之前</h2>
+				<div class="info-grid">
+					<div class="info-item">
+						<div class="label">展期与开放时间</div>
+						<div class="value">
+							2026.11.20 — 2027.01.03<br>
+							11 月 20 日 10:00 正式开放观展<br>
+							周二至周日 9:30–17:30，17:00 停止入场；周一闭馆；元旦假期正常开放。
+							<br><a href="https://www.threeshadows.cn/cn/jimei-arles/visit/" target="_blank" rel="noopener">官方参观指南</a>
+						</div>
+					</div>
+					<div class="info-item">
+						<div class="label">交通</div>
+						<div class="value">
+							地铁 1 号线至<strong>官任站</strong>，2 号出口。<br>
+							集美艺术中心：厦门市集美区杏林湾商务营运中心 12 号楼（公交「市民广场」站）。<br>
+							三影堂厦门：杏林湾商务营运中心 2 号楼裙楼三层（公交「杏林湾营运中心」站）。
+						</div>
+					</div>
+					<div class="info-item">
+						<div class="label">门票</div>
+						<div class="value">
+							正价单日票 <strong>35 元</strong>；优惠票 20 元（学生、全日制教师、残疾人、现役军人、60–69 岁、三影堂会员、厦门市摄影家协会会员，需携证件）；70 岁及以上老人、1.2
+							米及以下儿童在监护人陪同下免票。<br>
+							早鸟票 20 元已于 11 月 11 日 24:00 截止。购票：“三影堂摄影艺术中心”小程序；纸质票 11 月 20 日后在两馆兑票。
+							<br><a href="https://www.threeshadows.cn/cn/jimei-arles/visit/" target="_blank" rel="noopener">官方票务说明</a>
+						</div>
+					</div>
+					<div class="info-item">
+						<div class="label">建议</div>
+						<div class="value">
+							超过 40 场展览、近 2000 件作品，不需要全部看完。
+							按场馆和楼层走，在某个展厅多停一会儿。
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="acknowledge">
+				<div class="kicker" style="color:#e88d7f">Special Thanks</div>
+				<h2>特别感谢：怀炉写真机</h2>
+				<p>
+					本导览的楼层动线与展项位置梳理，来自小宇宙播客「怀炉写真机」的
+					2026 集美·阿尔勒前瞻导览。
+				</p>
+				<p style="margin-top:10px">
+					播客链接：
+					<a href="https://www.xiaoyuzhoufm.com/episode/6afae316a4a79edf137a2cbe" target="_blank" rel="noopener">
+						《如何一天看完2000件摄影作品？2026集美·阿尔勒影像艺术季前瞻导览（特种兵版）》
+					</a>
+				</p>
+			</section>
+		</div>
+	</div>
+
+	<!-- TAB 2：开幕周 -->
+	<div id="tab-talks" class="tab-panel">
+		<main class="container">
+			<div class="talk-intro">
+				<div class="kicker">Opening Week · 11.20 — 11.22</div>
+				<h2>开幕周活动</h2>
+				<p>
+					开幕周（11 月 20 日至 22 日）包含开幕式、对谈讲座、艺术导览、专家见面会与派对，
+					并揭晓“集美·阿尔勒发现奖”与“SmallRig 斯莫格动态影像创作奖”。
+					开幕周具体场次以三影堂 11 月 17 日发布的《开幕周活动全攻略》为准：开幕式、两场颁奖典礼与"何以为物"对谈均已列入；派对与部分导览仍以现场公告或小程序为准。
+				</p>
+			</div>
+
+			<div class="subnav-wrap">
+				<nav class="subnav">
+					<a href="#d20">11.20 周五</a>
+					<a href="#d21">11.21 周六</a>
+					<a href="#d22">11.22 周日</a>
+					<a href="#other">其他场次</a>
+					<a href="#tbd">顺便留意</a>
+					<a href="#howto">参与方式</a>
+				</nav>
+			</div>
+
+			<div class="day-block" id="d20">
+				<div class="day-head">
+					<span class="day">11 月 20 日</span><span class="date">周五 · 开幕日</span>
+				</div>
+				<div class="talk-list">
+
+					<div class="talk-item">
+						<div class="talk-time">09:30–10:10<small>开幕日</small></div>
+						<div class="talk-content">
+							<h4>第十二届集美·阿尔勒开幕式 <span class="tag ok">已公布</span></h4>
+							<div class="talk-meta">
+								<strong>地点</strong> 厦门市集美区杏林湾商务营运中心圆盘广场（近三影堂）
+							</div>
+							<div class="talk-desc">
+								据三影堂《11.20–11.22 开幕周活动全攻略》，开幕式定于 11 月 20 日 09:30–10:10 在杏林湾商务营运中心圆盘广场（近三影堂）举行。开幕周线下活动凭当日门票入场，线上可扫码观看直播。
+							</div>
+							<div class="talk-desc" style="margin-top:8px">
+								两个奖项的颁奖典礼时间也已明确：集美·阿尔勒发现奖于 11 月 22 日 16:20–17:00 颁奖（奖金 10 万元，次年赴法国阿尔勒办个展）；SmallRig 斯莫格动态影像创作奖于 11 月 21 日
+								17:00–17:30 颁奖（3 万元创作支持）。两场均在三影堂厦门摄影艺术中心大堂。
+							</div>
+							<div class="source-note">
+								来源：<a
+									href="https://mp.weixin.qq.com/s?__biz=MzA4MzQzODYwOQ==&amp;mid=2652642688&amp;idx=1&amp;sn=619d61a2eb0340aece080ea0ad7161de"
+									target="_blank" rel="noopener">三影堂公众号 · 开幕周活动全攻略</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="talk-item">
+						<div class="talk-time">10:00<small>开馆</small></div>
+						<div class="talk-content">
+							<h4>两馆正式开放观展 <span class="tag ok">已确认</span></h4>
+							<div class="talk-meta">
+								<strong>地点</strong> 集美艺术中心 / 三影堂厦门摄影艺术中心
+							</div>
+							<div class="talk-desc">
+								官方公告：2026 集美·阿尔勒于 11 月 20 日 10:00 正式开放观展。开幕日人流集中，建议先取纸质票再进馆。
+							</div>
+							<div class="source-note">
+								来源：<a href="https://www.threeshadows.cn/cn/jimei-arles/visit/" target="_blank" rel="noopener">三影堂 ·
+									参观页</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="talk-item">
+						<div class="talk-time">14:30–15:10</div>
+						<div class="talk-content">
+							<h4>在高温处看见：不被空调庇护的人 <span class="tag ok">已确认</span></h4>
+							<div class="talk-meta">
+								<strong>地点</strong> 三影堂厦门摄影艺术中心 ·
+								<strong>嘉宾</strong> 邹璧宇、杨心然、孙润翔 ·
+								<strong>主持</strong> 刘梦婷 · <strong>人数</strong> 50 人
+							</div>
+							<div class="talk-desc">
+								从影像叙事与气候感知出发，讨论高温如何进入日常生活。
+								与“群岛计划”展览《在高温处看见》直接配套。
+							</div>
+							<div class="talk-note">凭 2026 集美·阿尔勒门票入场 · 限 50 人</div>
+							<div class="source-note">
+								来源：<a href="https://weibo.com/2/detail/5364376979899393" target="_blank" rel="noopener">三影堂官方微博 ·
+									开幕周对谈&amp;工作坊</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="talk-item">
+						<div class="talk-time">15:20–16:20</div>
+						<div class="talk-content">
+							<h4>何以为物：摄影如何赋予物新的生命与意义 <span class="tag ok">已公布</span></h4>
+							<div class="talk-meta">
+								<strong>地点</strong> 三影堂厦门摄影艺术中心 · 大堂<br>
+								<strong>嘉宾</strong> 郑喜丞、赵晟娟、郑正垀、金庚泰、具本昌、具成娟、赵善姬 ·
+								<strong>主持</strong> 滕青云 · 中文–韩文同声传译
+							</div>
+							<div class="talk-desc">
+								与亚洲影汇《振荡中的物件》相呼应：当摄影把日常之物从使用中抽离出来，
+								物如何承载时间、记忆与欲望。开幕周全攻略已明确该场对谈于 11 月 20 日 15:20–16:20 举行。
+							</div>
+							<div class="talk-note">凭 2026 集美·阿尔勒门票入场</div>
+							<div class="source-note">
+								来源：<a
+									href="https://mp.weixin.qq.com/s?__biz=MzA4MzQzODYwOQ==&amp;mid=2652641573&amp;idx=3&amp;sn=64975ccd1f8e03aa9d61dbe3a46bca4b"
+									target="_blank" rel="noopener">三影堂公众号 · 何以为物对谈</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="day-block" id="d21">
+				<div class="day-head">
+					<span class="day">11 月 21 日</span><span class="date">周六</span>
+				</div>
+				<div class="talk-list">
+
+					<div class="talk-item">
+						<div class="talk-time">10:00–17:00<small>全天</small></div>
+						<div class="talk-content">
+							<h4>气候问题与创作：图片编辑工作坊 <span class="tag ok">已确认</span></h4>
+							<div class="talk-meta">
+								<strong>地点</strong> 厦门市思明区斗西路祥和广场 156 号 · 退化公园 6F 穹顶 DOME ·
+								<strong>导师</strong> 邹璧宇、杨心然 · <strong>人数</strong> 10 人
+							</div>
+							<div class="talk-desc">
+								《在高温处看见》的延伸活动，把对谈中的讨论延伸到参与式体验与日常行动，
+								在交流与实践中寻找看见、理解并回应热浪的方式。
+							</div>
+							<div class="talk-note">需单独报名 · 限 10 人 · 地点在思明区，不在集美</div>
+							<div class="source-note">
+								来源：<a href="https://weibo.com/2/detail/5364376979899393" target="_blank" rel="noopener">三影堂官方微博 ·
+									在高温处看见</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="talk-item">
+						<div class="talk-time">14:20–15:20</div>
+						<div class="talk-content">
+							<h4>深流：追寻那些看不见的连接 <span class="tag ok">已确认</span></h4>
+							<div class="talk-meta">
+								<strong>地点</strong> 三影堂厦门摄影艺术中心 ·
+								<strong>主持</strong> 董娜（深流展览制作人，AFA 挪威艺术共创联盟）<br>
+								<strong>嘉宾</strong> 比亚纳·克文斯兰 Bjarne Kvinnsland、张笛、於阗、
+								雷乐·科宁斯 René Konings、斯瓦乐·耶尔梅兰 Sverre Hjelmeland、
+								延思·莫滕·维克蒂尔 Jens Morten Viktil（北欧光影国际摄影艺术节主席）
+							</div>
+							<div class="talk-desc">
+								《深流》艺术家论坛。以采访式对谈、创作分享和短片展示相结合的方式，
+								聊中国与挪威艺术家如何从各自的实践出发，逐渐发现彼此之间的连接，
+								并分享挪威大西洋海岸的艺术共创经历与《深流》视听互动演出的片段。
+							</div>
+							<div class="talk-note">凭 2026 集美·阿尔勒门票入场</div>
+							<div class="source-note">
+								来源：<a href="https://weibo.com/2/detail/5364429828132428" target="_blank" rel="noopener">三影堂官方微博 ·
+									深流艺术家论坛</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="day-block" id="d22">
+				<div class="day-head">
+					<span class="day">11 月 22 日</span><span class="date">周日 · 开幕周收尾</span>
+				</div>
+				<div class="talk-list">
+					<div class="talk-item">
+						<div class="talk-time">10:00–12:00</div>
+						<div class="talk-content">
+							<h4>专家见面会：9 位导师一对一 <span class="tag ok">需报名</span></h4>
+							<div class="talk-meta">
+								<strong>地点</strong> 三影堂厦门摄影艺术中心（杏林湾营运中心 2 号楼三层）<br>
+								<strong>专家</strong> 董晓安、何伊宁、具本昌、克里斯托弗·维斯纳、李振华、荣荣、
+								孙炫晶、张培力、张子康<br>
+								<strong>费用</strong> 299 元/次（报名 3 位及以上专家享 9 折）
+							</div>
+							<div class="talk-desc">
+								每场会面 25 分钟，中场休息 5 分钟；10:00 开场介绍。
+								面向有一定摄影实践、希望作品得到点评与推荐的创作者，
+								作品有机会被推荐至展览、出版或收藏。
+							</div>
+							<div class="talk-desc" style="margin-top:8px">
+								报名已于 2026 年 11 月 10 日 20:00 截止；现场是否接受补位需向三影堂咨询（微信 threeshadowsedu）。
+							</div>
+							<div class="source-note">
+								来源：<a href="https://mp.weixin.qq.com/s/-zD15-lkIfV-xTnbKC_F7A" target="_blank" rel="noopener">三影堂公众号 ·
+									专家见面会</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="day-block" id="other">
+				<div class="day-head">
+					<span class="day">其他场次</span><span class="date">已见预告，时段未公布</span>
+				</div>
+				<div class="talk-list">
+					<div class="talk-item">
+						<div class="talk-time">11.20–22<small>多场</small></div>
+						<div class="talk-content">
+							<h4>公众导览：艺术家与策展人带你走展厅 <span class="tag tbd">时段未公布</span></h4>
+							<div class="talk-meta">
+								<strong>地点</strong> 集美艺术中心 / 三影堂厦门 ·
+								<strong>形式</strong> 通常每场 10–20 分钟，逐个展览接力
+							</div>
+							<div class="talk-desc">
+								集美·阿尔勒的惯例是由艺术家或策展人在展厅门口接力导览，凭当日门票跟随即可。
+								官方公布的开幕周内容含“艺术导览”，但逐场的时间、导览人与集合点尚未在官网列出。
+							</div>
+							<div class="talk-note">凭 2026 集美·阿尔勒门票入场</div>
+							<div class="source-note">
+								来源：<a href="https://www.threeshadows.cn/cn/jimei-arles/" target="_blank" rel="noopener">三影堂 · 官方页</a>
+							</div>
+						</div>
+					</div>
+					<div class="talk-item">
+						<div class="talk-time">开幕周内<small>待公布</small></div>
+						<div class="talk-content">
+							<h4>开幕派对 <span class="tag tbd">时段未公布</span></h4>
+							<div class="talk-meta">
+								<strong>地点</strong> 官方未公布
+							</div>
+							<div class="talk-desc">
+								官方通稿把“派对”列入开幕周活动之一，但没有公布日期、时刻、地点与参与方式，
+								也未说明是否对持票观众开放。请勿按往年的时间与地点盲目前往。
+							</div>
+							<div class="talk-desc" style="margin-top:8px">
+								建议当天在三影堂前台、官方公众号或“三影堂摄影艺术中心”小程序确认最新日程。
+							</div>
+							<div class="source-note">
+								来源：<a href="https://www.threeshadows.cn/cn/jimei-arles/" target="_blank" rel="noopener">三影堂 · 2026
+									集美·阿尔勒官方页</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="day-block" id="tbd">
+				<div class="day-head">
+					<span class="day">顺便留意</span><span class="date">不在公开日程内、但同期发生</span>
+				</div>
+				<div class="talk-list">
+					<div class="talk-item">
+						<div class="talk-time">11.17–22</div>
+						<div class="talk-content">
+							<h4>影像策展创作营「生成之眼」 <span class="tag tbd">非公开招募</span></h4>
+							<div class="talk-meta">
+								<strong>导师</strong> 何伊宁 · <strong>客座导师</strong> 刘鼎、卢迎华
+							</div>
+							<div class="talk-desc">
+								由香奈儿特别支持的公益策展课程，开幕周前夕在厦门开展驻留，
+								含方案评议、大师讲座、在地走访、布展观摩与公开演讲等环节。
+								面向已入选的策展人、研究者与艺术项目管理者。
+							</div>
+							<div class="source-note">
+								来源：<a href="https://www.threeshadows.cn/cn/jimei-arles/exhibitions/2026-jimei-arles/" target="_blank"
+									rel="noopener">三影堂 · 2026 展览总页（策展创作营）</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="info-block" id="howto" style="margin-top:32px;scroll-margin-top:110px">
+				<h2>参与方式</h2>
+				<div class="info-grid">
+					<div class="info-item">
+						<div class="label">入场</div>
+						<div class="value">
+							对谈与论坛（《在高温处看见》《深流》）凭 2026 集美·阿尔勒当日门票入场，
+							无需单独购票；工作坊与专家见面会需单独报名。
+						</div>
+					</div>
+					<div class="info-item">
+						<div class="label">容量</div>
+						<div class="value">
+							部分场次有人数上限：《在高温处看见》50 人、图片编辑工作坊 10 人、专家见面会按预约时段。
+							建议提前 15–20 分钟到场。
+						</div>
+					</div>
+					<div class="info-item">
+						<div class="label">地点提醒</div>
+						<div class="value">
+							已确认的对谈集中在一处：三影堂厦门摄影艺术中心（杏林湾商务营运中心 2 号楼裙楼三层）。
+							21 日上午的工作坊在思明区（退化公园 6F 穹顶 DOME），与主馆隔海，需预留通勤时间。
+						</div>
+					</div>
+					<div class="info-item">
+						<div class="label">确认</div>
+						<div class="value">
+							开幕周活动仍可能更新。出发前建议查看
+							<a href="https://www.threeshadows.cn/cn/jimei-arles/" target="_blank" rel="noopener">三影堂官方页面</a>
+							或现场公告。
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="revision">
+				<b>本页核对说明</b>（更新于 2026 年 11 月 17 日）
+				<ul>
+					<li>展期、开放时间、票价、兑票方式：以三影堂官网"参观"页为准。</li>
+					<li>发现奖 8 位入围者、各单元展览构成：以三影堂 2026 展览总页与各展讯原文为准。</li>
+					<li>楼层分布来自播客「怀炉写真机」与官方展讯的交叉比对，现场仍以标识为准。</li>
+					<li>开幕式、颁奖典礼、"何以为物"对谈的时段与地点：依据三影堂公众号 11 月 17 日《开幕周活动全攻略》补入。</li>
+					<li>派对与部分导览的逐场时刻官方仍未逐条列明，本页不代为设定时间。</li>
+				</ul>
+			</div>
+		</main>
+	</div>
+
+	<footer>
+		2026 集美·阿尔勒影像艺术季 · 第十二届<br>
+		展览信息以三影堂官方发布为准；播客「怀炉写真机」提供楼层动线梳理。<br>
+	</footer>
+
+	<script>
+		(function () {
+			var tabBtns = document.querySelectorAll('.tab-btn');
+			var tabPanels = {
+				guide: document.getElementById('tab-guide'),
+				talks: document.getElementById('tab-talks')
+			};
+
+			function switchTab(name) {
+				tabBtns.forEach(function (b) {
+					b.classList.toggle('active', b.getAttribute('data-tab') === name);
+				});
+				Object.keys(tabPanels).forEach(function (key) {
+					tabPanels[key].classList.toggle('active', key === name);
+				});
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			}
+
+			tabBtns.forEach(function (btn) {
+				btn.addEventListener('click', function () {
+					switchTab(btn.getAttribute('data-tab'));
+				});
+			});
+
+			var venueBtns = document.querySelectorAll('.venue-btn');
+			var venuePanels = {
+				jimei: document.getElementById('venue-jimei'),
+				threeshadows: document.getElementById('venue-threeshadows'),
+				archipelago: document.getElementById('venue-archipelago')
+			};
+
+			function switchVenue(name) {
+				venueBtns.forEach(function (b) {
+					b.classList.toggle('active', b.getAttribute('data-venue') === name);
+				});
+				Object.keys(venuePanels).forEach(function (key) {
+					venuePanels[key].classList.toggle('active', key === name);
+				});
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			}
+
+			venueBtns.forEach(function (btn) {
+				btn.addEventListener('click', function () {
+					switchVenue(btn.getAttribute('data-venue'));
+				});
+			});
+		})();
+	</script>
+
+</body>
+
+</html>
