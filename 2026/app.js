@@ -50,7 +50,6 @@
 
 			var DB_NAME = 'jimei-arles-notes';
 			var DB_VERSION = 1;
-			var MAX_PHOTOS = 9;
 			var MAX_EDGE = 1280;
 			var JPEG_QUALITY = 0.8;
 			var PDFMAKE_CDN = 'https://cdn.jsdelivr.net/npm/pdfmake@0.3.14/build/pdfmake.min.js';
@@ -493,7 +492,7 @@
 				el.photos.innerHTML = '';
 				var key = state.current.key;
 				var ids = (state.note && state.note.photoIds) || [];
-				el.count.textContent = ids.length + ' / ' + MAX_PHOTOS;
+				el.count.textContent = ids.length + ' 张';
 				var chain = Promise.resolve();
 				ids.forEach(function (id) {
 					chain = chain.then(function () {
@@ -565,16 +564,6 @@
 					toast('请先打开一条笔记');
 					return;
 				}
-				var remaining = MAX_PHOTOS - state.note.photoIds.length;
-				if (remaining <= 0) {
-					toast('每个项目最多 ' + MAX_PHOTOS + ' 张照片');
-					return;
-				}
-				if (files.length > remaining) {
-					toast('最多再添加 ' + remaining + ' 张，其余已忽略');
-					files = files.slice(0, remaining);
-				}
-
 				setStatus('正在处理照片…');
 				var chain = Promise.resolve();
 				files.forEach(function (file) {

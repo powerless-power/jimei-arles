@@ -1061,6 +1061,13 @@
 			line-height: 1
 		}
 
+		.note-photo-hint {
+			margin: 9px 0 0;
+			font-size: 11.5px;
+			line-height: 1.6;
+			color: #a1a1a6
+		}
+
 		.note-panel-foot {
 			flex: 0 0 auto;
 			display: flex;
