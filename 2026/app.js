@@ -2,7 +2,8 @@
 			var tabBtns = document.querySelectorAll('.tab-btn');
 			var tabPanels = {
 				guide: document.getElementById('tab-guide'),
-				talks: document.getElementById('tab-talks')
+				talks: document.getElementById('tab-talks'),
+				notes: document.getElementById('tab-notes')
 			};
 
 			function switchTab(name) {
@@ -13,6 +14,9 @@
 					tabPanels[key].classList.toggle('active', key === name);
 				});
 				window.scrollTo({ top: 0, behavior: 'smooth' });
+				if (name === 'notes') {
+					window.dispatchEvent(new CustomEvent('notes-tab-shown'));
+				}
 			}
 
 			tabBtns.forEach(function (btn) {
@@ -69,7 +73,9 @@
 				toastTimer: null,
 				confirmTimer: null,
 				pdfLoading: null,
-				fontRegistered: false
+				fontRegistered: false,
+				notesRenderId: 0,
+				notesUrls: []
 			};
 
 			var el = {};
@@ -90,6 +96,10 @@
 			el.exportBtn = $('export-notes-btn');
 			el.lightbox = $('note-lightbox');
 			el.lightboxImg = $('note-lightbox-img');
+			el.notesTab = $('tab-notes');
+			el.notesList = $('notes-list');
+			el.notesEmpty = $('notes-empty');
+			el.notesCount = $('notes-count');
 
 			function $(id) {
 				return document.getElementById(id);
@@ -303,6 +313,116 @@
 				}).catch(function () {});
 			}
 
+			/* ---------- 笔记预览 ---------- */
+
+			function revokeNotesUrls() {
+				state.notesUrls.forEach(function (url) { URL.revokeObjectURL(url); });
+				state.notesUrls = [];
+			}
+
+			function buildNoteCard(item, note, renderId) {
+				var card = document.createElement('article');
+				card.className = 'note-card';
+
+				var meta = document.createElement('div');
+				meta.className = 'note-card-meta';
+				meta.textContent = note.meta || item.meta;
+				card.appendChild(meta);
+
+				var title = document.createElement('h3');
+				title.className = 'note-card-title';
+				title.textContent = note.title || item.title;
+				card.appendChild(title);
+
+				if (note.text && note.text.trim()) {
+					var text = document.createElement('p');
+					text.className = 'note-card-text';
+					text.textContent = note.text;
+					card.appendChild(text);
+				}
+
+				var ids = (note.photoIds || []).slice(0, 4);
+				if (ids.length) {
+					var strip = document.createElement('div');
+					strip.className = 'note-card-photos';
+					card.appendChild(strip);
+					ids.forEach(function (id) {
+						DB.getPhoto(id).then(function (photo) {
+							if (renderId !== state.notesRenderId || !photo || !photo.blob) return;
+							var url = URL.createObjectURL(photo.blob);
+							state.notesUrls.push(url);
+							var img = document.createElement('img');
+							img.src = url;
+							img.alt = photo.name || '笔记照片';
+							strip.appendChild(img);
+						}).catch(function () {});
+					});
+				}
+
+				var foot = document.createElement('div');
+				foot.className = 'note-card-foot';
+				var time = document.createElement('span');
+				time.className = 'note-card-time';
+				time.textContent = note.updatedAt ? ('更新于 ' + formatDate(note.updatedAt)) : '';
+				foot.appendChild(time);
+				var edit = document.createElement('button');
+				edit.type = 'button';
+				edit.className = 'note-card-edit';
+				edit.textContent = '查看 / 编辑';
+				foot.appendChild(edit);
+				card.appendChild(foot);
+
+				card.addEventListener('click', function () { openPanel(item); });
+				return card;
+			}
+
+			function renderNotesTab() {
+				if (!el.notesList) return;
+				var renderId = ++state.notesRenderId;
+				DB.getAllNotes().then(function (notes) {
+					if (renderId !== state.notesRenderId) return;
+					var map = {};
+					(notes || []).forEach(function (n) { map[n.key] = n; });
+
+					var entries = [];
+					state.items.forEach(function (item) {
+						var note = map[item.key];
+						if (hasContent(note)) entries.push({ item: item, note: note });
+					});
+					Object.keys(map).forEach(function (key) {
+						if (state.byKey[key] || !hasContent(map[key])) return;
+						entries.push({
+							item: {
+								key: key,
+								title: map[key].title || '未命名条目',
+								meta: map[key].meta || '',
+								section: '其他'
+							},
+							note: map[key]
+						});
+					});
+
+					el.notesCount.textContent = entries.length;
+					el.notesEmpty.hidden = entries.length > 0;
+					revokeNotesUrls();
+					el.notesList.innerHTML = '';
+					entries.forEach(function (entry) {
+						el.notesList.appendChild(buildNoteCard(entry.item, entry.note, renderId));
+					});
+				}).catch(function (err) {
+					if (state.available) console.error('[NotesApp] load notes preview failed', err);
+					el.notesCount.textContent = '0';
+					el.notesEmpty.hidden = false;
+					el.notesList.innerHTML = '';
+				});
+			}
+
+			function refreshNotesTab() {
+				if (el.notesTab && el.notesTab.classList.contains('active')) renderNotesTab();
+			}
+
+			window.addEventListener('notes-tab-shown', renderNotesTab);
+
 			/* ---------- 编辑面板 ---------- */
 
 			function newNote(item) {
@@ -376,6 +496,7 @@
 					state.dirty = false;
 					setStatus('已保存 ' + formatTime(note.updatedAt));
 					updateMark(item.key);
+					refreshNotesTab();
 					return note;
 				}).catch(function (err) {
 					setStatus('保存失败，点击重试', true);
@@ -439,6 +560,7 @@
 						clearTimeout(state.saveTimer);
 						closePanel(true);
 						updateMark(key);
+						refreshNotesTab();
 						toast('笔记已删除');
 					})
 					.catch(function (err) {

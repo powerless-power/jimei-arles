@@ -29,14 +29,8 @@
 			<div class="tab-bar-tabs">
 				<button class="tab-btn active" data-tab="guide" type="button">导览</button>
 				<button class="tab-btn" data-tab="talks" type="button">开幕周</button>
+				<button class="tab-btn" data-tab="notes" type="button">笔记</button>
 			</div>
-			<button id="export-notes-btn" class="export-btn" type="button" title="导出全部笔记为 PDF" aria-label="导出全部笔记为 PDF">
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-					<path d="M12 3v12m0 0 4-4m-4 4-4-4"></path>
-					<path d="M4 17v3h16v-3"></path>
-				</svg>
-				<span>导出笔记 PDF</span>
-			</button>
 		</div>
 	</div>
 
@@ -1296,6 +1290,37 @@
 					<li>派对仍未公布日期、时刻、地点与参与方式，本页不代为设定时间。</li>
 				</ul>
 			</div>
+		</main>
+	</div>
+
+	<!-- TAB 3：我的笔记 -->
+	<div id="tab-notes" class="tab-panel">
+		<main class="container">
+			<div class="notes-head">
+				<div>
+					<div class="kicker">My Notes</div>
+					<h2>我的笔记</h2>
+					<p class="notes-desc">已记录 <strong id="notes-count">0</strong> 条笔记，按导览顺序排列。点开任意一条可以继续编辑；内容只保存在当前浏览器。</p>
+				</div>
+				<button id="export-notes-btn" class="export-btn" type="button" title="导出全部笔记为 PDF" aria-label="导出全部笔记为 PDF">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M12 3v12m0 0 4-4m-4 4-4-4"></path>
+						<path d="M4 17v3h16v-3"></path>
+					</svg>
+					<span>导出笔记 PDF</span>
+				</button>
+			</div>
+
+			<div id="notes-empty" class="notes-empty" hidden>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="M4 4h16v16H4z"></path>
+					<path d="M8 9h8M8 13h8M8 17h5"></path>
+				</svg>
+				<h3>还没有笔记</h3>
+				<p>在「导览」或「开幕周」里点击「写笔记」，写下的内容会出现在这里。</p>
+			</div>
+
+			<div id="notes-list" class="notes-list"></div>
 		</main>
 	</div>
 
