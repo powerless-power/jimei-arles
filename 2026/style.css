@@ -377,6 +377,96 @@
 			margin-top: 8px
 		}
 
+		.calendar-subscribe {
+			margin-top: 18px;
+			padding: 16px 18px;
+			background: var(--card);
+			border: 1px solid var(--line);
+			border-radius: 14px;
+			box-shadow: var(--shadow);
+			max-width: 760px
+		}
+
+		.calendar-head {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: baseline;
+			gap: 4px 10px;
+			font-size: 14px
+		}
+
+		.calendar-head strong {
+			font-size: 15px
+		}
+
+		.calendar-head span,
+		.calendar-desc,
+		.calendar-hint {
+			font-size: 12.5px;
+			color: var(--muted)
+		}
+
+		.calendar-desc {
+			margin-top: 4px
+		}
+
+		.calendar-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-top: 12px
+		}
+
+		.calendar-btn,
+		.calendar-copy {
+			font: inherit;
+			font-size: 12.5px;
+			font-weight: 600;
+			line-height: 1.4;
+			padding: 7px 13px;
+			border-radius: 999px;
+			border: 1px solid var(--line);
+			background: #fff;
+			color: var(--ink);
+			cursor: pointer;
+			text-decoration: none;
+			transition: background .16s ease, color .16s ease, transform .16s ease
+		}
+
+		.calendar-btn:hover,
+		.calendar-copy:hover {
+			background: #f0f0f2;
+			transform: translateY(-1px)
+		}
+
+		.calendar-btn.primary {
+			border-color: var(--accent);
+			background: var(--accent);
+			color: #fff
+		}
+
+		.calendar-btn.primary:hover {
+			background: #9d3e31
+		}
+
+		.calendar-url {
+			margin-top: 12px;
+			padding: 8px 10px;
+			background: #f5f5f7;
+			border-radius: 8px;
+			overflow-x: auto
+		}
+
+		.calendar-url code {
+			font-size: 12px;
+			color: var(--muted);
+			word-break: break-all
+		}
+
+		.calendar-hint {
+			margin-top: 8px
+		}
+
 		.subnav-wrap {
 			position: sticky;
 			top: 49px;
@@ -625,6 +715,19 @@
 				grid-template-columns: 1fr;
 				gap: 6px;
 				padding: 16px 18px
+			}
+
+			.calendar-subscribe {
+				padding: 14px 16px
+			}
+
+			.calendar-actions {
+				gap: 6px
+			}
+
+			.calendar-btn,
+			.calendar-copy {
+				padding: 7px 11px
 			}
 
 			.acknowledge {

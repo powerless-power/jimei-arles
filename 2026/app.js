@@ -788,4 +788,72 @@
 
 			init();
 		})();
+
+		(function () {
+			'use strict';
+
+			var subscribeLink = document.querySelector('[data-calendar-subscribe]');
+			var downloadLink = document.querySelector('[data-calendar-download]');
+			var copyBtn = document.querySelector('[data-calendar-copy]');
+			var urlNode = document.querySelector('[data-calendar-url]');
+			var urlBox = urlNode && urlNode.parentElement;
+			var hint = document.querySelector('[data-calendar-hint]');
+			if (!subscribeLink || !downloadLink || !copyBtn || !urlNode || !urlBox || !hint) return;
+
+			var icsUrl;
+			try {
+				icsUrl = new URL('opening-week.ics', location.href).href;
+			} catch (e) {
+				return;
+			}
+
+			var remote = /^https?:\/\//.test(icsUrl);
+			if (remote) {
+				subscribeLink.href = icsUrl.replace(/^https?:\/\//, 'webcal://');
+				subscribeLink.title = '在日历应用中订阅 ' + icsUrl;
+				downloadLink.href = icsUrl;
+				urlNode.textContent = icsUrl;
+				subscribeLink.hidden = false;
+				copyBtn.hidden = false;
+				urlBox.hidden = false;
+				hint.hidden = true;
+			} else {
+				downloadLink.href = 'opening-week.ics';
+				subscribeLink.hidden = true;
+				copyBtn.hidden = true;
+				urlBox.hidden = true;
+				hint.hidden = false;
+			}
+
+			function copyText(text) {
+				if (navigator.clipboard && navigator.clipboard.writeText) {
+					return navigator.clipboard.writeText(text);
+				}
+				return new Promise(function (resolve, reject) {
+					var ta = document.createElement('textarea');
+					ta.value = text;
+					ta.setAttribute('readonly', '');
+					ta.style.position = 'fixed';
+					ta.style.top = '-1000px';
+					document.body.appendChild(ta);
+					ta.select();
+					var ok = false;
+					try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+					document.body.removeChild(ta);
+					if (ok) resolve(); else reject(new Error('copy failed'));
+				});
+			}
+
+			copyBtn.addEventListener('click', function () {
+				copyText(icsUrl).then(function () {
+					var previous = copyBtn.textContent;
+					copyBtn.textContent = '已复制';
+					setTimeout(function () { copyBtn.textContent = previous; }, 1600);
+				}).catch(function () {
+					var previous = copyBtn.textContent;
+					copyBtn.textContent = '复制失败，请手动选择';
+					setTimeout(function () { copyBtn.textContent = previous; }, 2200);
+				});
+			});
+		})();
 	

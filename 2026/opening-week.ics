@@ -1,0 +1,260 @@
+BEGIN:VCALENDAR
+PRODID:-//Jimei Arles 2026//Opening Week//ZH
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:集美·阿尔勒 2026 开幕周
+X-WR-CALDESC:2026 集美·阿尔勒开幕周已公布活动（11 月 20–2
+ 2 日，厦门）。派对时间待官方公布。
+X-WR-TIMEZONE:Asia/Shanghai
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:21e6a952-6681-4f9d-814f-bf87188e9fe0
+DTSTAMP:20261118T000000Z
+DTSTART:20261120T013000Z
+DTEND:20261120T021000Z
+SUMMARY:第十二届集美·阿尔勒开幕式
+LOCATION:厦门市集美区杏林湾商务营运中心圆盘广场（近三
+ 影堂）
+DESCRIPTION:开幕日 09:30–10:10，线上可扫码观看直播。\n来
+ 源：三影堂公众号 · 开幕周活动全攻略\nhttps://mp.weixin.qq
+ .com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:1dddec51-1b76-4e84-a3da-9134a97b6548
+DTSTAMP:20261118T000000Z
+DTSTART:20261120T020000Z
+SUMMARY:两馆正式开放观展
+LOCATION:集美艺术中心 / 三影堂厦门摄影艺术中心
+DESCRIPTION:页面仅标注 10:00 开馆，未给出结束时间。\n来源
+ ：三影堂 · 参观页\nhttps://www.threeshadows.cn/cn/jimei-arles/visi
+ t/
+END:VEVENT
+BEGIN:VEVENT
+UID:61c7d79f-d478-4864-92f4-c606a9ac0e6c
+DTSTAMP:20261118T000000Z
+DTSTART:20261120T060000Z
+DTEND:20261120T062000Z
+SUMMARY:公众导览｜《果核不在水果里面》
+LOCATION:三影堂厦门摄影艺术中心
+DESCRIPTION:导览：齐燕、周一辰、钟莹、安溯、王沫文、白
+ 清文 & 周奕辰\n凭 2026 集美·阿尔勒门票入场\n来源：三
+ 影堂公众号 · 开幕周活动全攻略\nhttps://mp.weixin.qq.com/s/zC
+ LTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:980ec535-d093-4925-b7ba-2e34c96958d5
+DTSTAMP:20261118T000000Z
+DTSTART:20261120T063000Z
+DTEND:20261120T071000Z
+SUMMARY:在高温处看见：不被空调庇护的人
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:嘉宾：邹璧宇、杨心然、孙润翔；主持：刘梦婷
+ ；语言：中文；人数：50 人\n凭当日门票入场 · 限 50 人\
+ n来源：三影堂官方微博 · 开幕周对谈&工作坊\nhttps://weib
+ o.com/2/detail/5364376979899393\n公众号全攻略：https://mp.weixin.qq
+ .com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:2f9b93c3-5208-45c0-ac09-6961b27f89f7
+DTSTAMP:20261118T000000Z
+DTSTART:20261120T065000Z
+DTEND:20261120T084000Z
+SUMMARY:公众导览｜集美艺术中心一层、二层
+LOCATION:集美艺术中心一层、二层
+DESCRIPTION:语言：中文 / 中文–英文交互传译\n覆盖：《深
+ 流》《表面之下，表面之上》《现实的转译》《长江剧
+ 场》《未稳沉》《在高温处看见》《果核不在水果里面
+ 》及理光 GR 特展\n凭当日门票入场 · 可在展厅门口跟随\
+ n来源：三影堂公众号 · 开幕周活动全攻略\nhttps://mp.weixi
+ n.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:27216f22-e4b6-47f6-a4e1-cfe6842c761f
+DTSTAMP:20261118T000000Z
+DTSTART:20261120T072000Z
+DTEND:20261120T082000Z
+SUMMARY:何以为物：摄影如何赋予物新的生命与意义
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:嘉宾：郑喜丞、赵晟娟、郑正垀、金庚泰、具本
+ 昌、具成娟、赵善姬；主持：滕青云；中文–韩文同声
+ 传译\n凭当日门票入场\n来源：三影堂公众号 · 何以为物
+ 对谈\nhttps://mp.weixin.qq.com/s?__biz=MzA4MzQzODYwOQ==&mid=2652641573&i
+ dx=3&sn=64975ccd1f8e03aa9d61dbe3a46bca4b\n公众号全攻略：https://mp.
+ weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:3328aad9-dd68-4eeb-908e-47f4efa3f836
+DTSTAMP:20261118T000000Z
+DTSTART:20261120T083000Z
+DTEND:20261120T093000Z
+SUMMARY:讲座｜对话往昔：以历史馆藏激发当代创作
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:嘉宾：董晓安、何伊宁；语言：中文–英文同声
+ 传译\n凭当日门票入场\n来源：三影堂公众号 · 开幕周活
+ 动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:9565acae-a44b-4f93-b9c5-c3460945b695
+DTSTAMP:20261118T000000Z
+DTSTART:20261121T020000Z
+DTEND:20261121T090000Z
+SUMMARY:气候问题与创作：图片编辑工作坊
+LOCATION:厦门市思明区斗西路祥和广场 156 号 · 退化公园 6F
+  穹顶 DOME
+DESCRIPTION:导师：邹璧宇、杨心然；人数：10 人\n需单独报
+ 名 · 限 10 人 · 地点在思明区，不在集美\n来源：三影堂
+ 官方微博 · 在高温处看见\nhttps://weibo.com/2/detail/53643769798
+ 99393
+END:VEVENT
+BEGIN:VEVENT
+UID:90ea7966-a59e-4a4a-b06c-1a2b86e284fa
+DTSTAMP:20261118T000000Z
+DTSTART:20261121T030000Z
+DTEND:20261121T040000Z
+SUMMARY:公众导览｜《一切从东始》与《振荡中的物件》
+LOCATION:三影堂厦门摄影艺术中心
+DESCRIPTION:导览：姜慎微、具本昌、具成娟、赵善姬、金庚
+ 泰、郑正垀、郑喜丞、赵晟娟；语言：中文 / 中文–韩
+ 文交互传译\n凭当日门票入场\n来源：三影堂公众号 · 开
+ 幕周活动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:943b5b83-8170-4d93-bd5d-75829d907233
+DTSTAMP:20261118T000000Z
+DTSTART:20261121T052000Z
+DTEND:20261121T061000Z
+SUMMARY:对谈｜影像能做什么？AI 进击的时代
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:嘉宾：李振华、雎安奇、Ag（沈仲旻）、卢彦锦
+ 、芭芭拉·西格纳（Barbara Signer）；主持：李子健；语言
+ ：中文–英文同声传译\n凭当日门票入场\n来源：三影堂
+ 公众号 · 开幕周活动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3F
+ OokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:4f551a92-c55f-40f0-b214-2d2e20e92dc4
+DTSTAMP:20261118T000000Z
+DTSTART:20261121T053000Z
+DTEND:20261121T080000Z
+SUMMARY:公众导览｜集美艺术中心三层、四层
+LOCATION:集美艺术中心三层、四层
+DESCRIPTION:语言：中文\n覆盖：“聚光”“中国律动”及藏
+ 家故事、无界影像多个展览\n凭当日门票入场 · 可在展
+ 厅门口跟随\n来源：三影堂公众号 · 开幕周活动全攻略\n
+ https://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:c1b10e30-961f-4f32-8fd3-99f05f7e2bb0
+DTSTAMP:20261118T000000Z
+DTSTART:20261121T062000Z
+DTEND:20261121T072000Z
+SUMMARY:深流：追寻那些看不见的连接
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:语言：中文–英文同声传译；主持：董娜（AFA 
+ 挪威艺术共创联盟）\n嘉宾：比亚纳·克文斯兰、张笛、
+ 於阗、雷乐·科宁斯、斯瓦乐·耶尔梅兰、延思·莫滕·维
+ 克蒂尔\n凭当日门票入场\n来源：三影堂官方微博 · 深流
+ 艺术家论坛\nhttps://weibo.com/2/detail/5364429828132428\n公众号全
+ 攻略：https://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:dbf24db2-8971-4c06-aa3c-cc250d918853
+DTSTAMP:20261118T000000Z
+DTSTART:20261121T073000Z
+DTEND:20261121T085000Z
+SUMMARY:影像策展创作营｜“生成之眼”方案速绘 & 结业仪
+ 式
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:主持：唐荣嘉；语言：中文–英文同声传译；嘉
+ 宾：何伊宁、克里斯托弗·维斯纳、荣荣等\n凭当日门票
+ 入场\n来源：三影堂公众号 · 开幕周活动全攻略\nhttps://m
+ p.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:988a2f60-0ace-4fb2-b77c-dec41dcafbad
+DTSTAMP:20261118T000000Z
+DTSTART:20261121T090000Z
+DTEND:20261121T093000Z
+SUMMARY:颁奖典礼｜SmallRig 斯莫格动态影像创作奖
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:主持：唐荣嘉；语言：中文–英文同声传译\n凭
+ 当日门票入场\n来源：三影堂公众号 · 开幕周活动全攻
+ 略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:15995bfc-88a2-457c-ad32-65532f4bb2c3
+DTSTAMP:20261118T000000Z
+DTSTART:20261122T020000Z
+DTEND:20261122T040000Z
+SUMMARY:专家见面会：9 位导师一对一
+LOCATION:三影堂厦门摄影艺术中心 · 多媒体教室（杏林湾
+ 营运中心 2 号楼三层）
+DESCRIPTION:专家：董晓安、何伊宁、具本昌、克里斯托弗·
+ 维斯纳、李振华、荣荣、孙炫晶、张培力、张子康\n语言
+ ：中文 / 中文–英文交替传译；费用：299 元/次\n每场 25 
+ 分钟 · 报名已截止，补位需咨询 threeshadowsedu\n来源：三
+ 影堂公众号 · 专家见面会\nhttps://mp.weixin.qq.com/s/-zD15-lkIfV
+ -xTnbKC_F7A\n公众号全攻略：https://mp.weixin.qq.com/s/zCLTfa3FOokAN
+ 1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:bcd09140-6fd6-4af5-8984-492e0fb84148
+DTSTAMP:20261118T000000Z
+DTSTART:20261122T024000Z
+DTEND:20261122T042000Z
+SUMMARY:公众导览｜发现奖与华为睿影 XMAGE
+LOCATION:集美艺术中心三层
+DESCRIPTION:语言：中文\n覆盖：发现奖入围展与华为睿影 XMA
+ GE 特别呈现《永恒与一日》\n凭当日门票入场 · 可在展
+ 厅门口跟随\n来源：三影堂公众号 · 开幕周活动全攻略\n
+ https://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:03377a48-ffab-4951-81c6-94bbb2d8f26e
+DTSTAMP:20261118T000000Z
+DTSTART:20261122T052000Z
+DTEND:20261122T073000Z
+SUMMARY:公众导览｜年度阿尔勒与策展计划成果
+LOCATION:集美艺术中心二层、三层
+DESCRIPTION:语言：中文 / 中文–英文交互传译\n覆盖：成果
+ 展《余火》、年度阿尔勒与聚光单元多个展览\n凭当日门
+ 票入场 · 可在展厅门口跟随\n来源：三影堂公众号 · 开
+ 幕周活动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:cf213bd0-832d-49e3-b71d-9582d2cd0d7e
+DTSTAMP:20261118T000000Z
+DTSTART:20261122T060000Z
+DTEND:20261122T070000Z
+SUMMARY:对谈｜SmallRig 在场：行走至观看
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:嘉宾：蔡山海、王婧岚；主持：蔡宝丰；语言：
+ 中文\n凭当日门票入场\n来源：三影堂公众号 · 开幕周活
+ 动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:496c8dec-041f-465b-b3ba-712f467d4111
+DTSTAMP:20261118T000000Z
+DTSTART:20261122T071000Z
+DTEND:20261122T081000Z
+SUMMARY:对谈｜华为影像学院·厦门站：技术之外
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:嘉宾：荣荣、李昌竹、张帆、江鑫源；主持：胡
+ 嘉雯；语言：中文\n凭当日门票入场\n来源：三影堂公众
+ 号 · 开幕周活动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1
+ tTmWOh3g
+END:VEVENT
+BEGIN:VEVENT
+UID:398d8cfa-8a51-4521-ab53-48fd6e4d1e5e
+DTSTAMP:20261118T000000Z
+DTSTART:20261122T082000Z
+DTEND:20261122T090000Z
+SUMMARY:颁奖典礼｜集美·阿尔勒发现奖
+LOCATION:三影堂厦门摄影艺术中心 · 大堂
+DESCRIPTION:主持：国静遥；语言：中文–英文同声传译\n凭
+ 当日门票入场\n来源：三影堂公众号 · 开幕周活动全攻
+ 略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+END:VEVENT
+END:VCALENDAR
+
