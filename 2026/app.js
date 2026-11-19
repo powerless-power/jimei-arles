@@ -29,8 +29,9 @@
 			var venuePanels = {
 				jimei: document.getElementById('venue-jimei'),
 				threeshadows: document.getElementById('venue-threeshadows'),
-				archipelago: document.getElementById('venue-archipelago')
-			};
+				archipelago: document.getElementById('venue-archipelago'),
+				parallel: document.getElementById('venue-parallel')
+				};
 
 			function switchVenue(name) {
 				venueBtns.forEach(function (b) {
@@ -208,16 +209,6 @@
 
 			/* ---------- 项目识别 ---------- */
 
-			function makeKey(title) {
-				var t = cleanText(title);
-				var hash = 0;
-				for (var i = 0; i < t.length; i++) {
-					hash = ((hash << 5) - hash + t.charCodeAt(i)) | 0;
-				}
-				var tail = t.replace(/[^\w\u4e00-\u9fff]/g, '').slice(0, 20);
-				return 'n' + (hash >>> 0).toString(36) + (tail ? '-' + tail : '');
-			}
-
 			function injectButton(item) {
 				var btn = document.createElement('button');
 				btn.type = 'button';
@@ -239,7 +230,21 @@
 					var isEx = node.classList.contains('ex-card');
 					var titleNode = node.querySelector(isEx ? 'h3' : 'h4');
 					var title = cleanText(titleNode ? titleNode.textContent : '');
-					if (!title) return;
+					if (!title) {
+						console.error('[NotesApp] 笔记宿主缺少标题，已跳过', node);
+						return;
+					}
+
+					var key = cleanText(node.getAttribute('data-note-id') || '');
+					if (!key) {
+						console.error('[NotesApp] 笔记宿主缺少 data-note-id，已跳过', node);
+						return;
+					}
+					if (used[key]) {
+						console.error('[NotesApp] 重复的 data-note-id，已跳过：' + key, node);
+						return;
+					}
+					used[key] = true;
 
 					var meta = '';
 					var section = '';
@@ -262,15 +267,6 @@
 						meta = [day, date, firstText(node.querySelector('.talk-time'))].filter(Boolean).join(' · ');
 						section = '开幕周活动';
 					}
-
-					var base = makeKey(title);
-					var key = base;
-					var n = 2;
-					while (used[key]) {
-						key = base + '-' + n;
-						n++;
-					}
-					used[key] = true;
 
 					var item = {
 						el: node,
