@@ -4,8 +4,8 @@ VERSION:2.0
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:集美·阿尔勒 2026 开幕周
-X-WR-CALDESC:2026 集美·阿尔勒开幕周已公布活动（11 月 20–2
- 2 日，厦门）。派对时间待官方公布。
+X-WR-CALDESC:2026 集美·阿尔勒开幕周活动（11 月 20–2
+ 2 日，厦门）。
 X-WR-TIMEZONE:Asia/Shanghai
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
@@ -24,9 +24,10 @@ BEGIN:VEVENT
 UID:1dddec51-1b76-4e84-a3da-9134a97b6548
 DTSTAMP:20261118T000000Z
 DTSTART:20261120T020000Z
+DTEND:20261120T093000Z
 SUMMARY:两馆正式开放观展
 LOCATION:集美艺术中心 / 三影堂厦门摄影艺术中心
-DESCRIPTION:页面仅标注 10:00 开馆，未给出结束时间。\n来源
+DESCRIPTION:通稿：2026/11/20 参观时间 10:00–17:30。\n来源
  ：三影堂 · 参观页\nhttps://www.threeshadows.cn/cn/jimei-arles/visi
  t/
 END:VEVENT
@@ -50,7 +51,7 @@ DTEND:20261120T071000Z
 SUMMARY:在高温处看见：不被空调庇护的人
 LOCATION:三影堂厦门摄影艺术中心 · 大堂
 DESCRIPTION:嘉宾：邹璧宇、杨心然、孙润翔；主持：刘梦婷
- ；语言：中文；人数：50 人\n凭当日门票入场 · 限 50 人\
+ ；语言：中文\n凭当日门票入场\
  n来源：三影堂官方微博 · 开幕周对谈&工作坊\nhttps://weib
  o.com/2/detail/5364376979899393\n公众号全攻略：https://mp.weixin.qq
  .com/s/zCLTfa3FOokAN1tTmWOh3g
@@ -62,10 +63,10 @@ DTSTART:20261120T065000Z
 DTEND:20261120T084000Z
 SUMMARY:公众导览｜集美艺术中心一层、二层
 LOCATION:集美艺术中心一层、二层
-DESCRIPTION:语言：中文 / 中文–英文交互传译\n覆盖：《深
- 流》《表面之下，表面之上》《现实的转译》《长江剧
- 场》《未稳沉》《在高温处看见》《果核不在水果里面
- 》及理光 GR 特展\n凭当日门票入场 · 可在展厅门口跟随\
+DESCRIPTION:语言：中文 / 中文–英文交替传译\n覆盖：《深
+ 流》《表面之下，表面之上》《长江剧场》《未稳沉》
+ 《在高温处看见》《果核不在水果里面》及理光 GR 特
+ 展\n凭当日门票入场 · 可在展厅门口跟随\
  n来源：三影堂公众号 · 开幕周活动全攻略\nhttps://mp.weixi
  n.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
 END:VEVENT
@@ -95,19 +96,6 @@ DESCRIPTION:嘉宾：董晓安、何伊宁；语言：中文–英文同声
  动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
 END:VEVENT
 BEGIN:VEVENT
-UID:9565acae-a44b-4f93-b9c5-c3460945b695
-DTSTAMP:20261118T000000Z
-DTSTART:20261121T020000Z
-DTEND:20261121T090000Z
-SUMMARY:气候问题与创作：图片编辑工作坊
-LOCATION:厦门市思明区斗西路祥和广场 156 号 · 退化公园 6F
-  穹顶 DOME
-DESCRIPTION:导师：邹璧宇、杨心然；人数：10 人\n需单独报
- 名 · 限 10 人 · 地点在思明区，不在集美\n来源：三影堂
- 官方微博 · 在高温处看见\nhttps://weibo.com/2/detail/53643769798
- 99393
-END:VEVENT
-BEGIN:VEVENT
 UID:90ea7966-a59e-4a4a-b06c-1a2b86e284fa
 DTSTAMP:20261118T000000Z
 DTSTART:20261121T030000Z
@@ -116,7 +104,7 @@ SUMMARY:公众导览｜《一切从东始》与《振荡中的物件》
 LOCATION:三影堂厦门摄影艺术中心
 DESCRIPTION:导览：姜慎微、具本昌、具成娟、赵善姬、金庚
  泰、郑正垀、郑喜丞、赵晟娟；语言：中文 / 中文–韩
- 文交互传译\n凭当日门票入场\n来源：三影堂公众号 · 开
+ 文交替传译\n凭当日门票入场\n来源：三影堂公众号 · 开
  幕周活动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
 END:VEVENT
 BEGIN:VEVENT
@@ -166,10 +154,9 @@ DTEND:20261121T085000Z
 SUMMARY:影像策展创作营｜“生成之眼”方案速绘 & 结业仪
  式
 LOCATION:三影堂厦门摄影艺术中心 · 大堂
-DESCRIPTION:主持：唐荣嘉；语言：中文–英文同声传译；嘉
- 宾：何伊宁、克里斯托弗·维斯纳、荣荣等\n凭当日门票
- 入场\n来源：三影堂公众号 · 开幕周活动全攻略\nhttps://m
- p.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+DESCRIPTION:主持：唐荣嘉；语言：中文–英文同声传译\n凭当
+ 日门票入场\n来源：三影堂公众号 · 开幕周活动全攻略\nhttps
+ ://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
 END:VEVENT
 BEGIN:VEVENT
 UID:988a2f60-0ace-4fb2-b77c-dec41dcafbad
@@ -178,25 +165,23 @@ DTSTART:20261121T090000Z
 DTEND:20261121T093000Z
 SUMMARY:颁奖典礼｜SmallRig 斯莫格动态影像创作奖
 LOCATION:三影堂厦门摄影艺术中心 · 大堂
-DESCRIPTION:主持：唐荣嘉；语言：中文–英文同声传译\n凭
- 当日门票入场\n来源：三影堂公众号 · 开幕周活动全攻
- 略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
+DESCRIPTION:主持：唐荣嘉\n凭当日门票入场\n来源：三影堂公众
+ 号 · 开幕周活动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3F
+ OokAN1tTmWOh3g
 END:VEVENT
 BEGIN:VEVENT
 UID:15995bfc-88a2-457c-ad32-65532f4bb2c3
 DTSTAMP:20261118T000000Z
 DTSTART:20261122T020000Z
 DTEND:20261122T040000Z
-SUMMARY:专家见面会：9 位导师一对一
-LOCATION:三影堂厦门摄影艺术中心 · 多媒体教室（杏林湾
- 营运中心 2 号楼三层）
-DESCRIPTION:专家：董晓安、何伊宁、具本昌、克里斯托弗·
- 维斯纳、李振华、荣荣、孙炫晶、张培力、张子康\n语言
- ：中文 / 中文–英文交替传译；费用：299 元/次\n每场 25 
- 分钟 · 报名已截止，补位需咨询 threeshadowsedu\n来源：三
- 影堂公众号 · 专家见面会\nhttps://mp.weixin.qq.com/s/-zD15-lkIfV
- -xTnbKC_F7A\n公众号全攻略：https://mp.weixin.qq.com/s/zCLTfa3FOokAN
- 1tTmWOh3g
+SUMMARY:专家见面会
+LOCATION:三影堂厦门摄影艺术中心 · 多媒体教室
+DESCRIPTION:专家导师：董晓安、何伊宁、具本昌、克里斯托弗
+ ·维斯纳（Christoph Wiesner）、李振华、荣荣、孙炫晶、张
+ 培力、张子康\n语言：中文 / 中文–英文交替传译\n遴选制\n
+ 来源：三影堂公众号 · 专家见面会\nhttps://mp.weixin.qq.com
+ /s/-zD15-lkIfV-xTnbKC_F7A\n公众号全攻略：https://mp.weixin
+ .qq.com/s/zCLTfa3FOokAN1tTmWOh3g
 END:VEVENT
 BEGIN:VEVENT
 UID:bcd09140-6fd6-4af5-8984-492e0fb84148
@@ -217,7 +202,7 @@ DTSTART:20261122T052000Z
 DTEND:20261122T073000Z
 SUMMARY:公众导览｜年度阿尔勒与策展计划成果
 LOCATION:集美艺术中心二层、三层
-DESCRIPTION:语言：中文 / 中文–英文交互传译\n覆盖：成果
+DESCRIPTION:语言：中文 / 中文–英文交替传译\n覆盖：成果
  展《余火》、年度阿尔勒与聚光单元多个展览\n凭当日门
  票入场 · 可在展厅门口跟随\n来源：三影堂公众号 · 开
  幕周活动全攻略\nhttps://mp.weixin.qq.com/s/zCLTfa3FOokAN1tTmWOh3g
