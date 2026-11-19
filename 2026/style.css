@@ -372,6 +372,10 @@
 			margin: 4px 0 16px
 		}
 
+		.ex-posters.multi {
+			grid-template-columns: repeat(auto-fit, minmax(110px, 1fr))
+		}
+
 		.ex-posters a {
 			display: block;
 			line-height: 0;
