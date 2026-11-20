@@ -1,53 +1,136 @@
 		(function () {
 			var tabBtns = document.querySelectorAll('.tab-btn');
+			var venueBtns = document.querySelectorAll('.venue-btn');
 			var tabPanels = {
 				guide: document.getElementById('tab-guide'),
-				talks: document.getElementById('tab-talks'),
+				'opening-week': document.getElementById('tab-talks'),
 				notes: document.getElementById('tab-notes')
 			};
-
-			function switchTab(name) {
-				tabBtns.forEach(function (b) {
-					b.classList.toggle('active', b.getAttribute('data-tab') === name);
-				});
-				Object.keys(tabPanels).forEach(function (key) {
-					tabPanels[key].classList.toggle('active', key === name);
-				});
-				window.scrollTo({ top: 0, behavior: 'smooth' });
-				if (name === 'notes') {
-					window.dispatchEvent(new CustomEvent('notes-tab-shown'));
-				}
-			}
-
-			tabBtns.forEach(function (btn) {
-				btn.addEventListener('click', function () {
-					switchTab(btn.getAttribute('data-tab'));
-				});
-			});
-
-			var venueBtns = document.querySelectorAll('.venue-btn');
 			var venuePanels = {
 				jimei: document.getElementById('venue-jimei'),
 				threeshadows: document.getElementById('venue-threeshadows'),
 				archipelago: document.getElementById('venue-archipelago'),
 				parallel: document.getElementById('venue-parallel')
-				};
+			};
 
-			function switchVenue(name) {
+			var DEFAULT_TAB = 'guide';
+			var DEFAULT_VENUE = 'jimei';
+			var tabNames = Object.keys(tabPanels);
+			var venueNames = Object.keys(venuePanels);
+			var lastVenue = DEFAULT_VENUE;
+			var current = { tab: DEFAULT_TAB, venue: DEFAULT_VENUE };
+
+			function normalize(tab, venue) {
+				return {
+					tab: tabNames.indexOf(tab) >= 0 ? tab : DEFAULT_TAB,
+					venue: venueNames.indexOf(venue) >= 0 ? venue : DEFAULT_VENUE
+				};
+			}
+
+			function stateFromHash() {
+				var hash = (location.hash || '').replace(/^#/, '');
+				if (!hash) return null;
+				if (/^jimei-f\d+$/.test(hash)) return { tab: 'guide', venue: 'jimei' };
+				if (/^(d20|d21|d22|howto)$/.test(hash)) return { tab: 'opening-week', venue: null };
+				return null;
+			}
+
+			function readState() {
+				var params = new URLSearchParams(location.search);
+				var venueParam = params.get('venue');
+				if (venueNames.indexOf(venueParam) >= 0) lastVenue = venueParam;
+				var tab = params.get('tab');
+				var venue = venueParam;
+				var fromHash = stateFromHash();
+				if (fromHash) {
+					tab = fromHash.tab;
+					if (fromHash.venue) venue = fromHash.venue;
+				}
+				var state = normalize(tab, venue);
+				state.venue = state.tab === DEFAULT_TAB ? (venueNames.indexOf(venue) >= 0 ? venue : lastVenue) : DEFAULT_VENUE;
+				return state;
+			}
+
+			function writeUrl(state, replace, clearHash) {
+				try {
+					var url = new URL(location.href);
+					url.searchParams.set('tab', state.tab);
+					if (state.tab === DEFAULT_TAB) url.searchParams.set('venue', state.venue);
+					else url.searchParams.delete('venue');
+					if (clearHash) url.hash = '';
+					if (replace) history.replaceState(null, '', url.href);
+					else history.pushState(null, '', url.href);
+				} catch (e) {
+					// 部分本地 file:// 环境不允许 history API，此时仅切换界面
+				}
+			}
+
+			function applyState(next, scroll) {
+				current = next;
+				if (next.tab === DEFAULT_TAB) lastVenue = next.venue;
+
+				tabBtns.forEach(function (b) {
+					b.classList.toggle('active', b.getAttribute('data-tab') === next.tab);
+				});
+				Object.keys(tabPanels).forEach(function (key) {
+					tabPanels[key].classList.toggle('active', key === next.tab);
+				});
 				venueBtns.forEach(function (b) {
-					b.classList.toggle('active', b.getAttribute('data-venue') === name);
+					b.classList.toggle('active', b.getAttribute('data-venue') === next.venue);
 				});
 				Object.keys(venuePanels).forEach(function (key) {
-					venuePanels[key].classList.toggle('active', key === name);
+					venuePanels[key].classList.toggle('active', key === next.venue);
 				});
-				window.scrollTo({ top: 0, behavior: 'smooth' });
+
+				if (next.tab === 'notes') {
+					setTimeout(function () {
+						window.dispatchEvent(new CustomEvent('notes-tab-shown'));
+					}, 0);
+				}
+				if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
 			}
+
+			tabBtns.forEach(function (btn) {
+				btn.addEventListener('click', function () {
+					var tab = btn.getAttribute('data-tab');
+					var next = normalize(tab, tab === DEFAULT_TAB ? lastVenue : DEFAULT_VENUE);
+					writeUrl(next, false, true);
+					applyState(next, true);
+				});
+			});
 
 			venueBtns.forEach(function (btn) {
 				btn.addEventListener('click', function () {
-					switchVenue(btn.getAttribute('data-venue'));
+					var next = normalize(DEFAULT_TAB, btn.getAttribute('data-venue'));
+					writeUrl(next, false, true);
+					applyState(next, true);
 				});
 			});
+
+			window.addEventListener('popstate', function () {
+				applyState(readState(), true);
+			});
+
+			window.addEventListener('hashchange', function () {
+				var fromHash = stateFromHash();
+				if (!fromHash) return;
+				var next = normalize(fromHash.tab, fromHash.venue || lastVenue);
+				if (next.tab === current.tab && next.venue === current.venue) return;
+				writeUrl(next, true, false);
+				applyState(next, false);
+				var target = document.getElementById((location.hash || '').slice(1));
+				if (target) target.scrollIntoView();
+			});
+
+			var initial = readState();
+			applyState(initial, false);
+			writeUrl(initial, true, false);
+			if (stateFromHash()) {
+				setTimeout(function () {
+					var target = document.getElementById((location.hash || '').slice(1));
+					if (target) target.scrollIntoView();
+				}, 0);
+			}
 		})();
 
 		(function () {
@@ -881,6 +964,7 @@
 					return DB.getAllNotes();
 				}).then(function (notes) {
 					applyNoteIndex(notes || []);
+					refreshNotesTab();
 				}).catch(function (err) {
 					state.available = false;
 					state.items.forEach(function (item) {
