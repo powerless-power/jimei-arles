@@ -719,6 +719,112 @@
 			margin-bottom: 4px
 		}
 
+		.horika {
+			max-width: 1040px;
+			margin: -40px auto 0;
+			background: var(--ink);
+			color: #fff;
+			border-radius: 16px;
+			padding: 22px 24px;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 16px
+		}
+
+		.horika .kicker {
+			color: #e88d7f;
+			margin-bottom: 2px
+		}
+
+		.horika-icon {
+			width: 72px;
+			height: 72px;
+			flex: 0 0 72px
+		}
+
+		.horika-icon img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 17px;
+			box-shadow: 0 6px 18px rgba(0, 0, 0, .28)
+		}
+
+		.horika-body {
+			max-width: 720px
+		}
+
+		.horika h2 {
+			font-size: 18px;
+			margin-bottom: 4px
+		}
+
+		.horika p {
+			font-size: 13.5px;
+			line-height: 1.7;
+			opacity: .82
+		}
+
+		.horika-code {
+			display: inline-block;
+			margin-top: 8px;
+			font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+			font-size: 11px;
+			letter-spacing: .06em;
+			color: #f3c4ba;
+			background: rgba(255, 255, 255, .08);
+			border: 1px solid rgba(255, 255, 255, .16);
+			border-radius: 7px;
+			padding: 3px 8px
+		}
+
+		.horika-btn {
+			display: inline-block;
+			margin-left: 8px;
+			background: #e88d7f;
+			color: var(--ink);
+			font-size: 13px;
+			font-weight: 600;
+			text-decoration: none;
+			border-radius: 999px;
+			padding: 8px 16px
+		}
+
+		.horika-btn:hover {
+			background: #f3a294;
+			text-decoration: none
+		}
+
+		@media(max-width:1080px) {
+			.horika {
+				margin-left: 20px;
+				margin-right: 20px
+			}
+		}
+
+		@media(min-width:680px) {
+			.horika {
+				flex-direction: row;
+				align-items: center;
+				gap: 24px
+			}
+		}
+
+		@media(max-width:679px) {
+			.horika-code {
+				display: block;
+				width: fit-content;
+				margin-top: 10px
+			}
+
+			.horika-btn {
+				display: block;
+				width: fit-content;
+				margin: 12px 0 0
+			}
+		}
+
 		footer {
 			text-align: center;
 			padding: 36px 20px 50px;
